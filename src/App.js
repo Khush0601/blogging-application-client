@@ -13,12 +13,15 @@ const App = () => {
    
     
    },[])
-  
+   const onjouneyCompleted=()=>{
+    localStorage.setItem('isUserCame','came')
+    setIsUserCame(false)
+   }
   console.log(isUserCame,'isUse')
     
   return (
     <div>
-     {isUserCame ?<AppJourney/>:<>
+     {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
       {/* routes part will be here */}
       <h1>Routes</h1>
      </>}
