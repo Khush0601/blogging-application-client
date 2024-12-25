@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import AppJourney from './Component/AppJourney/AppJourney'
 
-function App() {
+const App = () => {
+  const [isUserCame,setIsUserCame]=useState(false)
+  useEffect(()=>{
+    const userCame=localStorage.getItem('isUserCame')
+    console.log( typeof userCameFirst)
+    if(userCame===null ){
+     setIsUserCame(true)
+    }
+   
+   
+    
+   },[])
+  
+  console.log(isUserCame,'isUse')
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     {isUserCame ?<AppJourney/>:<>
+      {/* routes part will be here */}
+      <h1>Routes</h1>
+     </>}
+     
     </div>
-  );
+
+
+  )
 }
 
-export default App;
+export default App
