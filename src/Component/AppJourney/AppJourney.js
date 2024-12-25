@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import SplashScreen from '../SplashScreen/SplashScreen'
 
 const AppJourney = ({onjouneyCompleted}) => {
     const[jouneyStep,setJourneyStep]=useState(0)
@@ -18,7 +19,7 @@ const AppJourney = ({onjouneyCompleted}) => {
     }
   return (
     <div>
-        {jouneyStep===0 && <h1>First Jouney</h1>}
+        {jouneyStep===0 && <SplashScreen/>}
         {jouneyStep===1 && <h1>Second Jouney</h1>}
         {jouneyStep===2 && <h1>Third Jouney</h1>}
         {jouneyStep===3 && <h1>Fourth Jouney</h1>}
