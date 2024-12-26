@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import SplashScreen from '../SplashScreen/SplashScreen'
-
+import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import splashImage1 from '../../Assets/schoolpng2.svg'
+import splashImage2 from '../../Assets/schoolpng3.svg'
+import splashImage3 from '../../Assets/schoolpng4.svg'
+import { Button } from '@mui/material';
 const AppJourney = ({onjouneyCompleted}) => {
     const[jouneyStep,setJourneyStep]=useState(0)
     const handleNext=()=>{
@@ -18,16 +23,27 @@ const AppJourney = ({onjouneyCompleted}) => {
         })
     }
   return (
-    <div>
-        {jouneyStep===0 && <SplashScreen/>}
-        {jouneyStep===1 && <h1>Second Jouney</h1>}
-        {jouneyStep===2 && <h1>Third Jouney</h1>}
-        {jouneyStep===3 && <h1>Fourth Jouney</h1>}
-      <div>
+    <div className='w-screen h-screen  border-2 border-solid  flex justify-center '>
+       <div className=' flex  flex-col p-5 items-center justify-center'>
+       <div className='my-4'>
+       {jouneyStep===0 && <SplashScreen splashImage={splashImage1} splashtitle={'Bus Tracking'}
+        splashContent={'This feature that provides information about'} splashSubContent={'its exact location and subsequent moments' }
+         
+        />}
+        {jouneyStep===1 && <SplashScreen splashImage={splashImage2} splashtitle={'Library'} 
+          splashContent={'Reservation are available at any time and'} splashSubContent={'it enhances your knowledge of the subject.'}
+        />}
+        {jouneyStep===2 && <SplashScreen splashImage={splashImage3} splashtitle={'Digital Diary'}
+          splashContent={'A simple solution for digitilizing your student'} splashSubContent={'academics like homework and exam result.'}
+        />}
      
-      {jouneyStep===3?<button onClick={onjouneyCompleted}>Jouney Completed</button>: <button onClick={handleNext}>next</button>}
-      <button onClick={handleBack}>back</button>
+       </div>
+      <div className=' w-full my-8  flex justify-end gap-4'>
+      <button onClick={handleBack} className='w-10 h-10 bg-[#3c317f] text-white rounded-full '><ArrowBackIosNewRoundedIcon/></button>
+      {jouneyStep===2?<button onClick={onjouneyCompleted} className=' bg-[#3c317f] px-4 rounded-xl text-white text-base'>Jouney Completed</button>:
+      <button onClick={handleNext} className='w-10 h-10 bg-[#3c317f] text-white rounded-full text-base'><ArrowForwardIosRoundedIcon/></button>}
       </div>
+       </div>
     </div>
   )
 }
