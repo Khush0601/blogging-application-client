@@ -3,7 +3,7 @@ import React from 'react'
 const SplashScreen = () => {
   return (
     <div >
-    
+    splash
     </div>
   )
 }
