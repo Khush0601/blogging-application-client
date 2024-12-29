@@ -14,6 +14,7 @@ const App = () => {
    
     
    },[])
+   
    const onjouneyCompleted=()=>{
     localStorage.setItem('isUserCame','came')
     setIsUserCame(false)
