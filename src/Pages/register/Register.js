@@ -9,7 +9,7 @@ const Register = () => {
   return (
     <div className=' w-screen h-screen flex justify-center items-center'>
         <div className='w-full  xs:w-96 m-2.5 p-2.5 flex flex-col items-center justify-center '>
-       <div className='text-3xl  my-8'>Register</div>
+       <div className='text-3xl  my-8'>Join Us Today</div>
        <div className='my-10 '>
         <div className='flex gap-2 items-center w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
          <div><PersonIcon/></div>
