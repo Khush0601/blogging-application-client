@@ -9,7 +9,7 @@ const AppRoutes = () => {
         <Routes>
           <Route index element={<Navigate to="/home"/>}/>
           <Route path="/home" element={<Home/>}/>
-          <Route path='/register' element={<Register/>}/>
+          <Route path='/signUp' element={<Register/>}/>
           <Route path='/signIn' element={<SignIn/>}/>
         </Routes>
     </>
