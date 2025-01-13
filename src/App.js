@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AppJourney from './Component/AppJourney/AppJourney'
 import AppRoutes from './Routes'
-
+import { ToastContainer} from 'react-toastify';
 const App = () => {
   const [isUserCame,setIsUserCame]=useState(false)
   useEffect(()=>{
@@ -27,6 +27,7 @@ const App = () => {
       {/* routes part will be here */}
       <AppRoutes/>
      </>}
+     <ToastContainer />
      
     </div>
 

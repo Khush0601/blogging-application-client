@@ -7,6 +7,8 @@ import axios from 'axios'
 import OtpInput from 'react-otp-input';
 import { Link } from 'react-router'
 
+import { ErrorToast, SuccessToast} from '../../utils/toast';
+
 const Register = () => {
   const userObj={
     name:'',
@@ -28,14 +30,17 @@ const Register = () => {
       email:signUpForm.email
      })
      setIsOtpGenerated(true)
+     SuccessToast('otp sent successfully')
    }
    catch(err){
     console.log(err)
     if(err.response.data==='otp already generated'){
       setIsOtpGenerated(true)
+      ErrorToast(err.response.data)
     }
     else{
       setIsOtpGenerated(false)
+      ErrorToast('server error')
     }
    }
   }
@@ -47,10 +52,12 @@ const Register = () => {
        })
        console.log(verify)
        setVerified(true)
+       SuccessToast('email veified')
      }
      catch(err){
       console.log(err)
       setVerified(false)
+      ErrorToast('email is not verified')
      }
   }
   console.log(signUpForm)
@@ -62,34 +69,43 @@ const Register = () => {
        <div className='my-10 '>
         <div className='flex gap-2 items-center w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
          <div><PersonIcon/></div>
-         <input type='text' className='outline-none bg-transparent ' placeholder='Full Name' />
+         <input type='text' className='outline-none bg-transparent'  placeholder='Full Name'  required/>
         </div>
         <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
          <div><EmailIcon/></div>
-         <input type='text' className='outline-none  bg-transparent' value={signUpForm.email} placeholder='Enter Email' onChange={(e)=>onFormUpdate(e,'email')}/>
+         <input type='text' className='outline-none  bg-transparent disabled:opacity-20' value={signUpForm.email} required placeholder='Enter Email' disabled={verified} onChange={(e)=>onFormUpdate(e,'email')}/>
          </div>
        {
-        !isOtpGenerated &&  <span className='text-blue-500' onClick={generateOtp}>Request otp</span>
+        !isOtpGenerated &&  <span className='text-blue-500 cursor-pointer'  onClick={generateOtp}>Request otp</span>
        }
        {
-        isOtpGenerated && <>
-        <OtpInput inputStyle='placeholder:text-slate-400 border-2 border-solid border-black  mx-2'
+        (isOtpGenerated && !verified) && <>
+      <OtpInput inputStyle='placeholder:text-slate-400 border-2 border-solid border-black  mx-2'
       value={otp}
       onChange={setOtp}
       numInputs={4}
       renderSeparator={<span>:</span>}
       renderInput={(props) => <input {...props} />}
     />
-    <span className='text-blue-500' onClick={verifyOtp}>verify</span>
+    
+     <div className='flex justify-between'>
+     <span className='text-blue-500' onClick={verifyOtp}>verify</span>
+     <span className='text-blue-500' onClick={generateOtp}>Resend</span>
+     </div>
+    
+
         </>
+       }
+       {
+        verified && <span className='text-green-500' > email verified</span>
        }
         
         <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
          <div><KeyIcon/></div>
-         <input type='text' className='outline-none  bg-transparent' placeholder='Enter password'/>
+         <input type='text' className='outline-none  bg-transparent' placeholder='Enter password' required/>
         </div>
        </div>
-       <div className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2'>Sign Up</div>
+       <button className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2 disabled:opacity-50' disabled={!verified}>Sign Up</button>
       <div className='my-4 text-gray-400'>OR</div>
       <div className='flex gap-2 px-10 items-center bg-black text-white rounded-3xl py-2 my-4 xs:px-16'>
         <div ><GoogleIcon sx={{fontSize:'20px'}}/></div>
