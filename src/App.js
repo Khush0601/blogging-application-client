@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AppJourney from './Component/AppJourney/AppJourney'
 import AppRoutes from './Routes'
 import { ToastContainer} from 'react-toastify';
+import FireBaseProvider from './Context/Firebase.Context';
 const App = () => {
   const [isUserCame,setIsUserCame]=useState(false)
   useEffect(()=>{
@@ -22,7 +23,8 @@ const App = () => {
   console.log(isUserCame,'isUse')
     
   return (
-    <div>
+   <FireBaseProvider >
+     <div>
      {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
       {/* routes part will be here */}
       <AppRoutes/>
@@ -30,6 +32,7 @@ const App = () => {
      <ToastContainer />
      
     </div>
+   </FireBaseProvider>
 
 
   )

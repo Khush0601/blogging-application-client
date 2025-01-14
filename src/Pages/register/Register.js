@@ -8,6 +8,8 @@ import OtpInput from 'react-otp-input';
 import { Link } from 'react-router'
 import validator from 'validator';
 import { ErrorToast, SuccessToast} from '../../utils/toast';
+import { signInWithPopup } from 'firebase/auth';
+import { useFirebaseContext } from '../../Context/Firebase.Context';
 
 const Register = () => {
   const userObj={
@@ -19,6 +21,7 @@ const Register = () => {
   const [signUpForm,setSignUpForm]=useState(userObj)
   const [isOtpGenerated,setIsOtpGenerated]=useState(false)
   const [verified,setVerified]=useState(false)
+  const {auth,fbProvider} = useFirebaseContext();
   const onFormUpdate=(e,type)=>{
    setSignUpForm((p)=>{
     return {...p,[type]:e.target.value}
@@ -105,6 +108,15 @@ const Register = () => {
 
     
   }
+  const onGoogleLogin=async()=>{
+  try{
+   const googleResponse=await  signInWithPopup(auth,fbProvider)
+   console.log(googleResponse)
+  }
+  catch(e){
+  ErrorToast(e.message)
+  }
+  }
   console.log(signUpForm)
   console.log(otp)
   return (
@@ -154,7 +166,7 @@ const Register = () => {
       <div className='my-4 text-gray-400'>OR</div>
       <div className='flex gap-2 px-10 items-center bg-black text-white rounded-3xl py-2 my-4 xs:px-16'>
         <div ><GoogleIcon sx={{fontSize:'20px'}}/></div>
-        <div className='text-sm'>Continue with Google</div>
+        <div className='text-sm' onClick={onGoogleLogin}>Continue with Google</div>
       </div>
       <div className='flex text-sm text-gray-400'>
         <div>Already have a account ?</div>
