@@ -57,10 +57,52 @@ const Register = () => {
      catch(err){
       console.log(err)
       setVerified(false)
-      ErrorToast('email is not verified')
+      ErrorToast(err?.response?.data?.message)
      }
   }
-  const onSignUp=()=>{
+  const validateForm = () => {
+    
+   if(!validator.isAlpha(signUpForm.name.replace(/\s/g, ''), 'en-US')){
+      ErrorToast('Name should only contain letters and spaces.')
+      return false;
+   }
+  
+    if (
+      !validator.isStrongPassword(signUpForm.password, {
+        minLength: 8,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+     ErrorToast(
+        'Password must be at least 8 characters long, include 1 uppercase letter, 1 number, and 1 special character.'
+      );
+      return false;
+    }
+    return true
+  }
+  const onSignUp= async(e)=>{
+    e.preventDefault()
+   try{
+   
+    if( validateForm()){
+     const signUpResponse=await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/signUp',{
+       name:signUpForm?.name,
+       email:signUpForm?.email,
+       password:signUpForm?.password
+     })
+    
+    
+     SuccessToast(signUpResponse?.data?.message)
+     setSignUpForm(userObj)
+    }
+   }
+   catch(err){
+    console.log(err)
+    ErrorToast(err?.response?.statusText)
+   }
+
     
   }
   console.log(signUpForm)
@@ -69,11 +111,11 @@ const Register = () => {
     <div className=' w-screen h-screen flex justify-center items-center'>
         <div className='w-full  xs:w-96 m-2.5 p-2.5 flex flex-col items-center justify-center '>
        <div className='text-3xl  my-8'>Join Us Today</div>
-       <form className='flex flex-col items-center'>
+       <form className='flex flex-col items-center' onSubmit={onSignUp}>
        <div className='my-10 '>
         <div className='flex gap-2 items-center w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
          <div><PersonIcon/></div>
-         <input type='text' className='outline-none bg-transparent'  placeholder='Full Name'  required/>
+         <input type='text' className='outline-none bg-transparent'  placeholder='Full Name' value={signUpForm.name} onChange={(e)=>onFormUpdate(e,'name')} required/>
         </div>
         <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
          <div><EmailIcon/></div>
@@ -104,7 +146,7 @@ const Register = () => {
         
         <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
          <div><KeyIcon/></div>
-         <input type='text' className='outline-none  bg-transparent' placeholder='Enter password' required/>
+         <input type='text' className='outline-none  bg-transparent' value={signUpForm.password} placeholder='Enter password' onChange={(e)=>onFormUpdate(e,'password')} required/>
         </div>
        </div>
        <button className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2 disabled:opacity-50' disabled={!verified} type='submit'>Sign Up</button>
