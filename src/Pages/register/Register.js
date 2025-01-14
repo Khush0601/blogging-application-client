@@ -6,7 +6,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import axios from 'axios'
 import OtpInput from 'react-otp-input';
 import { Link } from 'react-router'
-
+import validator from 'validator';
 import { ErrorToast, SuccessToast} from '../../utils/toast';
 
 const Register = () => {
@@ -60,12 +60,16 @@ const Register = () => {
       ErrorToast('email is not verified')
      }
   }
+  const onSignUp=()=>{
+    
+  }
   console.log(signUpForm)
   console.log(otp)
   return (
     <div className=' w-screen h-screen flex justify-center items-center'>
         <div className='w-full  xs:w-96 m-2.5 p-2.5 flex flex-col items-center justify-center '>
        <div className='text-3xl  my-8'>Join Us Today</div>
+       <form className='flex flex-col items-center'>
        <div className='my-10 '>
         <div className='flex gap-2 items-center w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
          <div><PersonIcon/></div>
@@ -92,9 +96,7 @@ const Register = () => {
      <span className='text-blue-500' onClick={verifyOtp}>verify</span>
      <span className='text-blue-500' onClick={generateOtp}>Resend</span>
      </div>
-    
-
-        </>
+     </>
        }
        {
         verified && <span className='text-green-500' > email verified</span>
@@ -105,7 +107,8 @@ const Register = () => {
          <input type='text' className='outline-none  bg-transparent' placeholder='Enter password' required/>
         </div>
        </div>
-       <button className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2 disabled:opacity-50' disabled={!verified}>Sign Up</button>
+       <button className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2 disabled:opacity-50' disabled={!verified} type='submit'>Sign Up</button>
+       </form>
       <div className='my-4 text-gray-400'>OR</div>
       <div className='flex gap-2 px-10 items-center bg-black text-white rounded-3xl py-2 my-4 xs:px-16'>
         <div ><GoogleIcon sx={{fontSize:'20px'}}/></div>
