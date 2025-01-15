@@ -21,6 +21,7 @@ const Register = () => {
   const [signUpForm,setSignUpForm]=useState(userObj)
   const [isOtpGenerated,setIsOtpGenerated]=useState(false)
   const [verified,setVerified]=useState(false)
+  const [focusedField,setFocusedField]=useState(null)
   const {auth,fbProvider} = useFirebaseContext();
   const onFormUpdate=(e,type)=>{
    setSignUpForm((p)=>{
@@ -130,11 +131,15 @@ const Register = () => {
        <div className='text-3xl  my-8'>Join Us Today</div>
        <form className='flex flex-col items-center' onSubmit={onSignUp}>
        <div className='my-10 '>
-        <div className='flex gap-2 items-center  w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
+        <div className={`flex gap-2 items-center  w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200  ${focusedField === 'name' ? 'border-solid border-black border-2' : 'border-transparent'}  xs:w-80`}
+        onFocus={() => setFocusedField('name')}
+        onBlur={() => setFocusedField(null)}>
          <div><PersonIcon/></div>
          <input type='text' className='outline-none  bg-transparent flex-grow'  placeholder='Full Name' value={signUpForm.name} onChange={(e)=>onFormUpdate(e,'name')} required/>
         </div>
-        <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
+        <div className={`flex gap-2 items-center  w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200  ${focusedField === 'email' ? 'border-solid border-black border-2' : 'border-transparent'}  xs:w-80`}
+        onFocus={() => setFocusedField('email')}
+        onBlur={() => setFocusedField(null)}>
          <div><EmailIcon/></div>
          <input type='text' className='outline-none  bg-transparent flex-grow disabled:opacity-20' value={signUpForm.email} required placeholder='Enter Email' disabled={verified} onChange={(e)=>onFormUpdate(e,'email')}/>
          </div>
@@ -172,9 +177,11 @@ const Register = () => {
         verified && <span className='text-green-500' > email verified</span>
        }
         
-        <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
+       <div className={`flex gap-2 items-center  w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200  ${focusedField === 'password' ? 'border-solid border-black border-2' : 'border-transparent'}  xs:w-80`}
+        onFocus={() => setFocusedField('password')}
+        onBlur={() => setFocusedField(null)}>
          <div><KeyIcon/></div>
-         <input type='text' className='outline-none  bg-transparent flex-grow' value={signUpForm.password} placeholder='Enter password' onChange={(e)=>onFormUpdate(e,'password')} required/>
+         <input type='text' className='outline-none  bg-transparent flex-grow focus-within:border-black' value={signUpForm.password} placeholder='Enter password' onChange={(e)=>onFormUpdate(e,'password')} required/>
         </div>
        </div>
        <button className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2 disabled:opacity-50' disabled={!verified} type='submit'>Sign Up</button>
