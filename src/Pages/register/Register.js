@@ -28,24 +28,29 @@ const Register = () => {
    })
   }
   const generateOtp=async()=>{
-   try{
-    const createOtp=await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/generateOtp',{
-      email:signUpForm.email
-     })
-     setIsOtpGenerated(true)
-     SuccessToast('otp sent successfully')
-   }
-   catch(err){
-    console.log(err)
-    if(err.response.data==='otp already generated'){
-      setIsOtpGenerated(true)
-      ErrorToast(err.response.data)
+    if(!signUpForm.email){
+      return ErrorToast('please enter the email')
     }
-    else{
-      setIsOtpGenerated(false)
-      ErrorToast('server error')
-    }
-   }
+  else{
+    try{
+      const createOtp=await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/generateOtp',{
+        email:signUpForm.email
+       })
+       setIsOtpGenerated(true)
+       SuccessToast('otp sent successfully')
+     }
+     catch(err){
+      console.log(err)
+      if(err.response.data==='otp already generated'){
+        setIsOtpGenerated(true)
+        ErrorToast(err.response.data)
+      }
+      else{
+        setIsOtpGenerated(false)
+        ErrorToast('server error')
+      }
+     }
+  }
   }
   const verifyOtp=async()=>{
     try{
@@ -125,20 +130,31 @@ const Register = () => {
        <div className='text-3xl  my-8'>Join Us Today</div>
        <form className='flex flex-col items-center' onSubmit={onSignUp}>
        <div className='my-10 '>
-        <div className='flex gap-2 items-center w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
+        <div className='flex gap-2 items-center  w-64  p-2 my-2 border-solid border-black rounded-lg bg-stone-200 xs:w-80'>
          <div><PersonIcon/></div>
-         <input type='text' className='outline-none bg-transparent'  placeholder='Full Name' value={signUpForm.name} onChange={(e)=>onFormUpdate(e,'name')} required/>
+         <input type='text' className='outline-none  bg-transparent flex-grow'  placeholder='Full Name' value={signUpForm.name} onChange={(e)=>onFormUpdate(e,'name')} required/>
         </div>
         <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
          <div><EmailIcon/></div>
-         <input type='text' className='outline-none  bg-transparent disabled:opacity-20' value={signUpForm.email} required placeholder='Enter Email' disabled={verified} onChange={(e)=>onFormUpdate(e,'email')}/>
+         <input type='text' className='outline-none  bg-transparent flex-grow disabled:opacity-20' value={signUpForm.email} required placeholder='Enter Email' disabled={verified} onChange={(e)=>onFormUpdate(e,'email')}/>
          </div>
        {
-        !isOtpGenerated &&  <span className='text-blue-500 cursor-pointer'  onClick={generateOtp}>Request otp</span>
+        !isOtpGenerated &&   <span className='text-blue-500 cursor-pointer'  onClick={generateOtp}>Request otp</span>
        }
        {
-        (isOtpGenerated && !verified) && <>
-      <OtpInput inputStyle='placeholder:text-slate-400 border-2 border-solid border-black  mx-2'
+        (isOtpGenerated && !verified) && <div>
+      <OtpInput 
+      inputStyle={{
+    padding: '10px',
+    margin: '13px',
+    backgroundColor:'#e7e5e4',
+    borderRadius: '10px',
+    textAlign: 'center', 
+    width: '50px', 
+    fontSize: '20px',
+    color: 'black',
+    
+  }}
       value={otp}
       onChange={setOtp}
       numInputs={4}
@@ -147,10 +163,10 @@ const Register = () => {
     />
     
      <div className='flex justify-between'>
-     <span className='text-blue-500' onClick={verifyOtp}>verify</span>
-     <span className='text-blue-500' onClick={generateOtp}>Resend</span>
+     <span className='text-blue-500 cursor-pointer' onClick={verifyOtp}>verify</span>
+     <span className='text-blue-500 cursor-pointer' onClick={generateOtp}>Resend</span>
      </div>
-     </>
+     </div>
        }
        {
         verified && <span className='text-green-500' > email verified</span>
@@ -158,7 +174,7 @@ const Register = () => {
         
         <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
          <div><KeyIcon/></div>
-         <input type='text' className='outline-none  bg-transparent' value={signUpForm.password} placeholder='Enter password' onChange={(e)=>onFormUpdate(e,'password')} required/>
+         <input type='text' className='outline-none  bg-transparent flex-grow' value={signUpForm.password} placeholder='Enter password' onChange={(e)=>onFormUpdate(e,'password')} required/>
         </div>
        </div>
        <button className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2 disabled:opacity-50' disabled={!verified} type='submit'>Sign Up</button>
