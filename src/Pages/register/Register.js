@@ -109,7 +109,12 @@ const Register = () => {
    }
    catch(err){
     console.log(err)
+    if(err?.response?.data?.message==='E11000 duplicate key error collection: test.users index: email_1 dup key: { email: "ksingh200601@gmail.com" }'){
+      ErrorToast('user already exist')
+    }
+   else{
     ErrorToast(err?.response?.statusText)
+   }
    }
 
     
