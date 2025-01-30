@@ -123,6 +123,8 @@ const Register = () => {
   try{
    const googleResponse=await  signInWithPopup(auth,fbProvider)
    console.log(googleResponse)
+   let googleToken= await googleResponse.user.getIdToken()
+   console.log(googleToken)
   }
   catch(e){
   ErrorToast(e.message)
