@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AppHeader = () => {
+const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
   return (
     <div className="w-screen bg-black h-[440px] md:px-28 flex flex-col  items-center">
      <div className="text-white flex  mt-4 w-full items-center justify-between py-2  sm:px-6 ">
@@ -22,12 +22,13 @@ const AppHeader = () => {
 
      
       <div className="text-white px-32 my-16 flex flex-col  items-center  ">
-        <div className='text-6xl font-medium'>Welcome to our blog</div>
+        <div className='text-6xl font-medium'>{headerTitle}</div>
         <div className='text-center my-7 text-lg font-base'>
-        Start your blog today and join a community of writers and readers who are passionate about sharing their stories and ideas.
-        We offer everything you need to get started,from helpful tips and tutorials.
+        {/* Start your blog today and join a community of writers and readers who are passionate about sharing their stories and ideas.
+        We offer everything you need to get started,from helpful tips and tutorials. */}
+        {headerDesc}
          </div>
-         <div className='text-center  text-lg font-base' >Learn More ---</div>
+         <div className='text-center  text-lg font-base' >{learnmore}</div>
       </div>
     </div>
   );
