@@ -7,7 +7,7 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
        <div className=" mx-2 flex items-center justify-center cursor-pointer">logo</div>
          <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden">menu</div>
          <div className="hidden md:flex cursor-pointer mx-8 lg:mx-16 xl:mx-24  items-center justify-center">
-          <div className=" text-lg font-medium">Home</div>
+          <div className=" text-lg font-medium lg:mr-7">Home</div>
           <div className=" text-lg font-medium mx-4 lg:mx-7 ">About</div>
           <div className=" text-lg font-medium mx-4 lg:mx-7">Services</div>
           <div className=" text-lg font-medium mx-4 lg:mx-7">Blogs</div>
@@ -24,8 +24,7 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
       <div className="text-white px-32 my-16 flex flex-col  items-center  ">
         <div className='text-6xl font-medium'>{headerTitle}</div>
         <div className='text-center my-7 text-lg font-base'>
-        {/* Start your blog today and join a community of writers and readers who are passionate about sharing their stories and ideas.
-        We offer everything you need to get started,from helpful tips and tutorials. */}
+       
         {headerDesc}
          </div>
          <div className='text-center  text-lg font-base' >{learnmore}</div>
