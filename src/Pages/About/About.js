@@ -3,8 +3,8 @@ import AppHeader from '../../Component/appHeader/AppHeader'
 
 const About = () => {
   return (
-    <div className='flex justify-center'>
-        <AppHeader headerTitle={'About Us'} />
+    <div>
+        <AppHeader headerTitle={'About Us'}  />
     </div>
   )
 }

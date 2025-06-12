@@ -7,13 +7,13 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
  const navigate=useNavigate()
   return (
    
-    <div className="w-screen bg-black h-[440px] md:px-28 flex flex-col  items-center">
-     <div className="text-white flex  mt-4 w-full items-center justify-between py-2  sm:px-6 ">
-       <div className=" mx-2 flex items-center justify-center  cursor-pointer">logo</div>
+    <div className="w-full px-2 bg-black h-[420px] xs: h-[440px] flex flex-col  items-center">
+     <div className="text-white flex  mt-4 w-full items-center justify-between py-2  md:px-4 ">
+       <div className=" mx-1 flex items-center justify-center  cursor-pointer">logo</div>
          <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden" onClick={()=>setIsOpen(true)}>menu</div>
-         <div className="hidden md:flex cursor-pointer mx-8 lg:mx-16 xl:mx-24  items-center justify-center">
+         <div className="hidden md:flex cursor-pointer mx-2 lg:mx-16 xl:mx-24  items-center justify-center">
           <div className=" text-lg font-medium lg:mr-7" onClick={()=>navigate('/home')} >Home</div>
-          <div className=" text-lg font-medium mx-4 lg:mx-7" onClick={()=>navigate('/about')}>About</div>
+          <div className=" text-lg  font-medium mx-4 lg:mx-7" onClick={()=>navigate('/about')}>About</div>
           <div className=" text-lg font-medium mx-4 lg:mx-7" onClick={()=>navigate('/services')}>Services</div>
           <div className=" text-lg font-medium mx-4 lg:mx-7" onClick={()=>navigate('/blog')}>Blogs</div>
           <div className=" text-lg font-medium mx-4 lg:mx-7" onClick={()=>navigate('/contact')}>Contact</div>
@@ -26,9 +26,9 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
       </div>
 
      
-      <div className="text-white px-32 my-16 flex flex-col  items-center ">
-        <div className='text-6xl font-medium'>{headerTitle}</div>
-        <div className='text-center my-7 text-lg font-base'>
+      <div className="text-white px-10 my-8  flex flex-col  items-center xs:px-20 my-12 md:px-32 my-16 ">
+        <div className='text-3xl text-center font-medium md:text-4xl'>{headerTitle}</div>
+        <div className='text-center my-10 text-base font-base md:text-lg my-12  px-16 lg:px-32'>
           {headerDesc}
         </div>
          <div className='text-center  text-lg font-base' >{learnmore}</div>
