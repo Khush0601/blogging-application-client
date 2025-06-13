@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppHeader from '../../Component/appHeader/AppHeader'
 import BlogCard from '../../Component/blogCard/BlogCard'
 
 const Home = () => {
+  const [activeCategory,setActiveCategory]=useState('All')
+  const categories=['All','Startups','Security','AI','Apps','Tech']
+
   return (
     <div >
     <AppHeader headerTitle={'Welcome to Our Blog'}
@@ -13,12 +16,19 @@ const Home = () => {
 
     <div className=' bg-slate-200 w-full py-6  px-32'>
       <div className="pb-2 border-b-2 border-gray-400 border-solid flex items-center ">
-        <div className='mx-16 text-lg font-medium'>All</div>
-        <div className='mx-16 text-lg font-medium'>Startups</div>
-        <div className='mx-16 text-lg font-medium'>Security</div>
-        <div className='mx-16 text-lg font-medium'>AI</div>
-        <div className='mx-16 text-lg font-medium'>Apps</div>
-        <div className='mx-16 text-lg font-medium'>Tech</div>
+        {/* <div className='mx-16 text-lg font-medium'>All</div> */}
+        {categories.map((category)=>{
+           return <div
+            key={category}
+            className={`mx-16 text-lg font-medium cursor-pointer pb-1 border-b-2 transition-all duration-200 
+            ${activeCategory === category? 'text-amber-600 text-xl border-amber-600' : ' border-transparent'}`}
+            onClick={()=>setActiveCategory(category)}
+          >{category}
+
+          </div>
+
+        })}
+       
         
       </div>
       <div className='flex justify-between'>
