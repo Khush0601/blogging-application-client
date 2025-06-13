@@ -21,7 +21,7 @@ const Home = () => {
     />
 
     <div className=' bg-slate-200 w-full py-6  px-32'>
-      <div className="pb-2 border-b-2 border-gray-400 border-solid flex items-center ">
+      <div className="pb-2 border-b-2 border-gray-400 border-solid flex items-center flex-wrap ">
          {categories.map((category)=>{
            return <div
             key={category}
@@ -40,10 +40,7 @@ const Home = () => {
       {activeCategory==='AI' && <Ai/>}
       {activeCategory==='Apps' && <Apps/>}
       {activeCategory==='Tech' && <Tech/>}
-      {/* <div className='flex justify-between'>
-       <BlogCard/>
-       <div>latest post</div>
-      </div> */}
+      
 
 
     </div>
