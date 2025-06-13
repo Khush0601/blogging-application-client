@@ -11,7 +11,7 @@ const Home = () => {
         learnmore={'Learn more --->'}
     />
 
-    {/* <div className=' bg-slate-200 w-full py-6  px-32'>
+    <div className=' bg-slate-200 w-full py-6  px-32'>
       <div className="pb-2 border-b-2 border-gray-400 border-solid flex items-center ">
         <div className='mx-16 text-lg font-medium'>All</div>
         <div className='mx-16 text-lg font-medium'>Startups</div>
@@ -27,7 +27,7 @@ const Home = () => {
       </div>
 
 
-    </div> */}
+    </div>
 
 
 
