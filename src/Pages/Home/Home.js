@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import AppHeader from '../../Component/appHeader/AppHeader'
 import BlogCard from '../../Component/blogCard/BlogCard'
+import All from '../../Component/all/All'
+import Startups from '../../Component/startups/Startups'
+import Security from '../../Component/security/Security'
+import Ai from '../../Component/ai/Ai'
+import Apps from '../../Component/apps/Apps'
+import Tech from '../../Component/tech/Tech'
 
 const Home = () => {
   const [activeCategory,setActiveCategory]=useState('All')
@@ -16,8 +22,7 @@ const Home = () => {
 
     <div className=' bg-slate-200 w-full py-6  px-32'>
       <div className="pb-2 border-b-2 border-gray-400 border-solid flex items-center ">
-        {/* <div className='mx-16 text-lg font-medium'>All</div> */}
-        {categories.map((category)=>{
+         {categories.map((category)=>{
            return <div
             key={category}
             className={`mx-16 text-lg font-medium cursor-pointer pb-1 border-b-2 transition-all duration-200 
@@ -28,13 +33,17 @@ const Home = () => {
           </div>
 
         })}
-       
-        
       </div>
-      <div className='flex justify-between'>
+      {activeCategory==='All' && <All/>}
+      {activeCategory==='Startups' && <Startups/>}
+      {activeCategory==='Security' && <Security/>}
+      {activeCategory==='AI' && <Ai/>}
+      {activeCategory==='Apps' && <Apps/>}
+      {activeCategory==='Tech' && <Tech/>}
+      {/* <div className='flex justify-between'>
        <BlogCard/>
        <div>latest post</div>
-      </div>
+      </div> */}
 
 
     </div>
