@@ -21,8 +21,9 @@ const Home = () => {
     />
 
     <div className=' bg-slate-200 w-full py-6  px-32'>
-      <div className="pb-2 border-b-2 border-gray-400 border-solid flex items-center flex-wrap ">
-         {categories.map((category)=>{
+      <div className="pb-2 border-b-2 border-gray-400 border-solid overflow-x-auto ">
+        <div className='flex items-center flex-nowrap w-max'>
+           {categories.map((category)=>{
            return <div
             key={category}
             className={`mx-16 text-lg font-medium cursor-pointer pb-1 border-b-2 transition-all duration-200 
@@ -33,6 +34,7 @@ const Home = () => {
           </div>
 
         })}
+        </div>
       </div>
       {activeCategory==='All' && <All/>}
       {activeCategory==='Startups' && <Startups/>}

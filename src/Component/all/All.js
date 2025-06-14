@@ -22,19 +22,17 @@ const All = () => {
   getAllBlogs()
   },[])
 
-  // const onBlogClick=(blogId)=>{
-  //   navigate(`/blogDetail/${blogId}`)
-  // }
+  
   console.log(allBlogs)
   return (
-    <div className='flex justify-between'>
+    <div className='flex  flex-col md:flex-row md:justify-between'>
       
-      <div className='flex flex-wrap' >
+      <div className='flex justify-center flex-wrap '>
       {allBlogs.map((blogs)=>{
         return  <BlogCard key={blogs._id} blogBanner={blogs?.blogBanner} title={blogs?.title}  date={blogs?.updatedAt} blogId={blogs._id} />
        })}
       </div>
-       <div>latest post</div>
+       <div className='text-center md:w-1/4 mt-6 md:mt-0'>latest post</div>
       </div> 
   )
 }

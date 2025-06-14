@@ -9,34 +9,34 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
  const isActive=(path)=>location.pathname===path;
   return (
    
-    <div className="w-full px-2 bg-black h-[420px] xs: h-[440px] flex flex-col  items-center">
-     <div className="text-white flex  mt-4 w-full items-center justify-between gap-16 py-2  md:px-4 ">
+    <div className="w-full px-2 bg-black h-[460px] xs: h-[400px] flex flex-col  items-center">
+     <div className="text-white flex  mt-2 w-full items-center justify-between gap-16 py-2  md:px-4 ">
        <div className=" mx-1 flex items-center justify-center  cursor-pointer">logo</div>
         <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden" onClick={()=>setIsOpen(true)}>menu</div>
          <div className="hidden md:flex cursor-pointer mx-2 lg:mx-16 xl:mx-24  items-center justify-center">
-          <div className={`text-lg font-medium lg:mr-7 pb-2 border-b-2 transition-all 
-          duration-200 ${isActive('/home')? 'border-amber-600  font-semibold': 'border-transparent text-lg'}`} 
+          <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
+          ${isActive('/home')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`} 
           onClick={()=>navigate('/home')} >Home</div>
-          <div className={`text-lg font-medium lg:mr-7 pb-2 border-b-2 transition-all 
-          duration-200 ${isActive('/about')? 'border-amber-600  font-semibold': 'border-transparent text-lg'}`}  onClick={()=>navigate('/about')}>About</div>
-          <div className={`text-lg font-medium lg:mr-7 pb-2 border-b-2 transition-all 
-          duration-200 ${isActive('/services')? 'border-amber-600  font-semibold': 'border-transparent text-lg'}`}  onClick={()=>navigate('/services')}>Services</div>
-          <div className={`text-lg font-medium lg:mr-7 pb-2 border-b-2 transition-all 
-          duration-200 ${isActive('/blog')? 'border-amber-600  font-semibold': 'border-transparent text-lg'}`}  onClick={()=>navigate('/blog')}>Blogs</div>
-          <div className={`text-lg font-medium lg:mr-7 pb-2 border-b-2 transition-all 
-          duration-200 ${isActive('/contact')? 'border-amber-600  font-semibold': 'border-transparent text-lg'}`}  onClick={()=>navigate('/contact')}>Contact</div>
-          <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 mx-6 items-center justify-center">
+          <div className={`text-lg font-medium mr-4 pb-2 border-b-2 
+           ${isActive('/about')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`}  onClick={()=>navigate('/about')}>About</div>
+          <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
+           ${isActive('/services')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`}  onClick={()=>navigate('/services')}>Services</div>
+          <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
+           ${isActive('/blog')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`}  onClick={()=>navigate('/blog')}>Blogs</div>
+          <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
+          ${isActive('/contact')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`}  onClick={()=>navigate('/contact')}>Contact</div>
+          <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 mx-2 items-center justify-center">
           Login
         </div>
-         <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 mx-6 items-center justify-center ">
+         <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 ml-2 items-center justify-center ">
           Profile
         </div>
         </div>
  </div>
 
-      <div className="text-white px-10 my-8  flex flex-col  items-center xs:px-20 my-12 md:px-32 my-16 ">
-        <div className='text-3xl text-center font-medium md:text-4xl'>{headerTitle}</div>
-        <div className='text-center my-10 text-base font-base md:text-lg my-12  px-16 lg:px-32'>
+      <div className="text-white px-2 my-4  flex flex-col justify-center items-center xs:px-20 my-12 md:px-32 my-16 ">
+        <div className='text-3xl text-center font-medium md:text-4xl mt-8'>{headerTitle}</div>
+        <div className='text-center my-4 text-base font-base md:text-lg my-12  px-16 lg:px-32'>
           {headerDesc}
         </div>
          <div className='text-center  text-lg font-base' >{learnmore}</div>
@@ -48,14 +48,14 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
             <button onClick={() => setIsOpen(false)} ><RxCross2/></button>
             
           </div>
-           <ul className="mt-4 space-y-4">
-               <li onClick={()=>navigate('/home')}>Home</li>
-               <li onClick={()=>navigate('/about')}>About</li>
-               <li onClick={()=>navigate('/services')}>Services</li>
-               <li onClick={()=>navigate('/contact')}>Contact</li>
-               <li onClick={()=>navigate('/blog')}>Blogs</li>
-               <li onClick={()=>navigate('/signIn')}>Login</li>
-    </ul>
+           <div className="mt-4 space-y-4">
+               <div onClick={()=>navigate('/home')} >Home</div>
+               <div onClick={()=>navigate('/about')}>About</div>
+               <div onClick={()=>navigate('/services')}>Services</div>
+               <div onClick={()=>navigate('/contact')}>Contact</div>
+               <div onClick={()=>navigate('/blog')}>Blogs</div>
+               <div onClick={()=>navigate('/signIn')}>Login</div>
+    </div>
         </div>
       }
     </div>
