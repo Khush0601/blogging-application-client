@@ -19,6 +19,9 @@ const All = () => {
     console.log(e?.response?.data?.message)
     }
   }
+
+
+  
   getAllBlogs()
   },[])
 
