@@ -22,9 +22,10 @@ const BlogDetail = () => {
       />
       <div>blogTitle</div>
 
-      
+
       <div>User Details</div>
       <div>Like comment box</div>
+      
       <div>blog content</div>
      </div>
 
