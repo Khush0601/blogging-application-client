@@ -124,7 +124,21 @@ const Register = () => {
    const googleResponse=await  signInWithPopup(auth,fbProvider)
    console.log(googleResponse)
    let googleToken= await googleResponse.user.getIdToken()
-   console.log(googleToken)
+   let data = '';
+
+  let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: 'http://localhost:8000/bloggingApplication/api/v1/user/googleLogin',
+  headers: { 
+    'Authorization': `Bearer${googleToken}`
+  },
+  data : data
+};
+ let registeredData=await axios.request(config)
+
+
+   console.log('user',registeredData)
   }
   catch(e){
   ErrorToast(e.message)
