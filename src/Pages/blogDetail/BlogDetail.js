@@ -25,6 +25,8 @@ const BlogDetail = () => {
       <div>Like comment box</div>
       <div>blog content</div>
      </div>
+
+     
     </div>
   )
 }
