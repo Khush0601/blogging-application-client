@@ -21,12 +21,14 @@ const BlogDetail = () => {
         alt="blog-Banner" className='w-[650px] h-[450px]'
       />
       <div>blogTitle</div>
+
+      
       <div>User Details</div>
       <div>Like comment box</div>
       <div>blog content</div>
      </div>
 
-     
+
     </div>
   )
 }
