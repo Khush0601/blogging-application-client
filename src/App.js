@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import AppJourney from './Component/AppJourney/AppJourney'
 import AppRoutes from './Routes'
 import { ToastContainer} from 'react-toastify';
 import FireBaseProvider from './Context/Firebase.Context';
+export const UserContext=createContext(null);
 const App = () => {
+   const [user,setUser]=useState(null)
   const [isUserCame,setIsUserCame]=useState(false)
   useEffect(()=>{
     const userCame=localStorage.getItem('isUserCame')
@@ -23,7 +25,8 @@ const App = () => {
   console.log(isUserCame,'isUse')
     
   return (
-   <FireBaseProvider >
+   <UserContext.Provider value={{user:user,setUser:setUser}}>
+    <FireBaseProvider >
      <div>
      {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
       {/* routes part will be here */}
@@ -33,6 +36,7 @@ const App = () => {
      
     </div>
    </FireBaseProvider>
+   </UserContext.Provider>
 
 
   )

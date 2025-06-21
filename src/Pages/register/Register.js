@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import GoogleIcon from '@mui/icons-material/Google';
 import axios from 'axios'
 import OtpInput from 'react-otp-input';
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import validator from 'validator';
 import { ErrorToast, SuccessToast} from '../../utils/toast';
 import { signInWithPopup } from 'firebase/auth';
 import { useFirebaseContext } from '../../Context/Firebase.Context';
+import { UserContext } from '../../App';
 
 const Register = () => {
+  const{user,setUser}=useContext(UserContext)
+  const navigate=useNavigate()
   const userObj={
     name:'',
     email:'',
@@ -136,15 +139,19 @@ const Register = () => {
   data : data
 };
  let registeredData=await axios.request(config)
-
-
-   console.log('user',registeredData)
+ setUser(registeredData.data)
+ SuccessToast('SignUp successfully')
+ setTimeout(()=>{
+  navigate('/home')
+ },2000)
+  
   }
   catch(e){
   ErrorToast(e.message)
   }
   }
   console.log(signUpForm)
+  console.log(user,'user')
   console.log(otp)
   return (
     <div className=' w-screen h-screen flex justify-center items-center'>

@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import GoogleIcon from '@mui/icons-material/Google';
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import axios from 'axios';
-import { ErrorToast } from '../../utils/toast';
+import { ErrorToast, SuccessToast } from '../../utils/toast';
 import { signInWithPopup } from 'firebase/auth';
 import { useFirebaseContext } from '../../Context/Firebase.Context';
+import { UserContext } from '../../App';
 
 const SignIn = () => {
+  const {user,setUser}=useContext(UserContext)
+  const navigate=useNavigate()
   const {auth,fbProvider} = useFirebaseContext();
   const onGoogleLogin=async()=>{
     try{
@@ -28,14 +31,21 @@ const SignIn = () => {
     data : data
   };
    let registeredData=await axios.request(config)
-  
-  
+   setUser(registeredData.data)
+   SuccessToast('Login successfully')
+   setTimeout(()=>{
+    navigate('/home')
+   },2000)
+
     console.log('userlogin',registeredData)
     }
     catch(e){
-    ErrorToast(e.message)
+
+      console.error("Login error:", e);
+      ErrorToast(e.message || "Google Login failed");
     }
     }
+    console.log('user',user)
     
   return (
     <div className=' w-screen h-screen flex justify-center items-center'>
