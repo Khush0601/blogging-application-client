@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import PersonIcon from '@mui/icons-material/Person';
+import React, { useContext, useState } from 'react'
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -10,9 +9,28 @@ import { signInWithPopup } from 'firebase/auth';
 import { useFirebaseContext } from '../../Context/Firebase.Context';
 import { UserContext } from '../../App';
 
+
 const SignIn = () => {
   const {user,setUser}=useContext(UserContext)
+    const [focusedField,setFocusedField]=useState(null)
   const navigate=useNavigate()
+  const userObj={
+    email:'',
+    password:''
+  }
+  const [signInDetails,setSignInDetails]=useState(userObj)
+  const onSignInDetailsUpdate=(e,type)=>{
+   setSignInDetails((p)=>{
+    return {...p,[type]:e.target.value}
+   })
+  }
+  const handleSignIn=()=>{
+  if(!signInDetails.email){
+    ErrorToast('please provide')
+  }
+  console.log('login')
+  }
+  console.log(signInDetails)
   const {auth,fbProvider} = useFirebaseContext();
   const onGoogleLogin=async()=>{
     try{
@@ -40,11 +58,13 @@ const SignIn = () => {
     console.log('userlogin',registeredData)
     }
     catch(e){
-
       console.error("Login error:", e);
       ErrorToast(e.message || "Google Login failed");
     }
     }
+
+
+    
     console.log('user',user)
     
   return (
@@ -52,25 +72,30 @@ const SignIn = () => {
         <div className='w-full  xs:w-96 m-2.5 p-2.5 flex flex-col items-center justify-center '>
        <div className='text-3xl  my-8'>Welcome Back</div>
        <div className='my-10 '>
-       
-        <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
+        
+        <div className={`flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200  ${focusedField === 'email' ? 'border-solid border-black border-2' : 'border-transparent'}  xs:w-80 `}
+        onFocus={() => setFocusedField('email')}
+        onBlur={() => setFocusedField(null)}
+        >
          <div><EmailIcon/></div>
-         <input type='text' className='outline-none  bg-transparent' placeholder='Enter Email'/>
+         <input type='text' className='outline-none  bg-transparent' placeholder='Enter Email' value={signInDetails.email} onChange={(e)=>onSignInDetailsUpdate(e,'email')}/>
         </div>
-        <div className='flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200 xs:w-80'>
+        <div className={`flex gap-2 items-center  p-2  w-64 my-2 border-solid border-black rounded-lg  bg-stone-200  ${focusedField === 'password' ? 'border-solid border-black border-2' : 'border-transparent'}  xs:w-80 `}
+         onFocus={() => setFocusedField('password')}
+         onBlur={() => setFocusedField(null)}>
          <div><KeyIcon/></div>
-         <input type='text' className='outline-none  bg-transparent' placeholder='Enter password'/>
+         <input type='text' className='outline-none  bg-transparent' placeholder='Enter password' value={signInDetails.password} onChange={(e)=>onSignInDetailsUpdate(e,'password')}/>
         </div>
        </div>
-       <div className='text-normal text-white bg-black px-5 py-1 rounded-2xl my-2'>Sign In</div>
+       <div className='text-normal cursor-pointer text-white bg-black px-5 py-1 rounded-2xl my-2' onClick={handleSignIn}>Sign In</div>
       <div className='my-4 text-gray-400'>OR</div>
-      <div className='flex gap-2 px-10 items-center bg-black text-white rounded-3xl py-2 my-4 xs:px-16'>
+      <div className='flex gap-2 px-10 items-center cursor-pointer bg-black text-white rounded-3xl py-2 my-4 xs:px-16 '>
         <div ><GoogleIcon sx={{fontSize:'20px'}}/></div>
-        <div className='text-sm' onClick={onGoogleLogin}>Continue with Google</div>
+        <div className='text-sm ' onClick={onGoogleLogin}>Continue with Google</div>
       </div>
       <div className='flex text-sm text-gray-400'>
         <div>Don't have  account ?</div>
-        <Link to='/signUp' className='underline'>Sign Up</Link>
+        <Link to='/signUp' className='underline cursor-pointer' >Sign Up</Link>
       </div>
     </div>
     </div>

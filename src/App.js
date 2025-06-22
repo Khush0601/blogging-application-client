@@ -4,6 +4,7 @@ import AppRoutes from './Routes'
 import { ToastContainer} from 'react-toastify';
 import FireBaseProvider from './Context/Firebase.Context';
 export const UserContext=createContext(null);
+
 const App = () => {
    const [user,setUser]=useState(null)
   const [isUserCame,setIsUserCame]=useState(false)
@@ -25,9 +26,9 @@ const App = () => {
   console.log(isUserCame,'isUse')
     
   return (
+   <FireBaseProvider >
    <UserContext.Provider value={{user:user,setUser:setUser}}>
-    <FireBaseProvider >
-     <div>
+    <div>
      {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
       {/* routes part will be here */}
       <AppRoutes/>
@@ -35,8 +36,9 @@ const App = () => {
      <ToastContainer />
      
     </div>
-   </FireBaseProvider>
    </UserContext.Provider>
+    
+   </FireBaseProvider>
 
 
   )
