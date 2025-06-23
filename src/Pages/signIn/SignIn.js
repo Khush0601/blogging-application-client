@@ -24,12 +24,31 @@ const SignIn = () => {
     return {...p,[type]:e.target.value}
    })
   }
-  const handleSignIn=()=>{
-  if(!signInDetails.email){
-    ErrorToast('please provide')
+  const handleSignIn=async()=>{
+  if(!signInDetails.email || !signInDetails.password){
+    ErrorToast('please provide ')
+    return
   }
-  console.log('login')
+  try {
+    const response = await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/signIn', {
+      email: signInDetails.email,
+      password: signInDetails.password,
+    });
+    console.log('Login successful:', response.data);
+    SuccessToast('Login successful!');
+    // setUser()
+   } 
+   catch (error) {
+    
+    if (error.response) {
+      ErrorToast(error.response.data.message || 'Login failed');
+    } 
+    else {
+      ErrorToast('Something went wrong. Please try again.');
   }
+}
+  }
+
   console.log(signInDetails)
   const {auth,fbProvider} = useFirebaseContext();
   const onGoogleLogin=async()=>{
