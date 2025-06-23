@@ -51,6 +51,7 @@ const SignIn = () => {
 
   console.log(signInDetails)
   const {auth,fbProvider} = useFirebaseContext();
+  
   const onGoogleLogin=async()=>{
     try{
      const googleResponse=await  signInWithPopup(auth,fbProvider)
