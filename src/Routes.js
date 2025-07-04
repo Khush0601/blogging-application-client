@@ -8,6 +8,7 @@ import Services from './Pages/Services/Services'
 import Blog from './Pages/Blog/Blog'
 import Contact from './Pages/Contact/Contact'
 import BlogDetail from './Pages/blogDetail/BlogDetail'
+import Profile from './Pages/Profile/Profile'
 const AppRoutes = () => {
   return (
     <>
@@ -21,6 +22,7 @@ const AppRoutes = () => {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/blogDetail/:id' element={<BlogDetail/>}/>
           <Route path='/contact' element={<Contact/>}/>
+          <Route path="/profile" element={<Profile/>}/>
         </Routes>
     </>
   )
