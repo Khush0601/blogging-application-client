@@ -24,6 +24,7 @@ const SignIn = () => {
     return {...p,[type]:e.target.value}
    })
   }
+  
   const handleSignIn=async()=>{
   if(!signInDetails.email || !signInDetails.password){
     ErrorToast('please provide ')
