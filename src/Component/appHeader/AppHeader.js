@@ -30,8 +30,8 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
           Login
         </div>
          <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 ml-2 items-center justify-center " 
-         onClick={()=>navigate('/profile')}>
-          Profile
+         onClick={()=>navigate('/dashboard')}>
+          Dashboard
         </div>
         </div>
  </div>
@@ -57,7 +57,7 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
                <div onClick={()=>navigate('/contact')}>Contact</div>
                <div onClick={()=>navigate('/blog')}>Blogs</div>
                <div onClick={()=>navigate('/signIn')}>Login</div>
-               <div onClick={()=>navigate('/profile')}>Login</div>
+               <div onClick={()=>navigate('/dashboard')}>Dashboard</div>
 
            </div>
         </div>

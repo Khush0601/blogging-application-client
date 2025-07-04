@@ -8,7 +8,11 @@ import Services from './Pages/Services/Services'
 import Blog from './Pages/Blog/Blog'
 import Contact from './Pages/Contact/Contact'
 import BlogDetail from './Pages/blogDetail/BlogDetail'
-import Profile from './Pages/Profile/Profile'
+
+import Dashboard from './Pages/Dashboard/Dashboard'
+import UserBlog from './Component/userBlog/UserBlog'
+import Write from './Component/write/Write'
+import Profile from './Component/profile/Profile'
 const AppRoutes = () => {
   return (
     <>
@@ -22,6 +26,9 @@ const AppRoutes = () => {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/blogDetail/:id' element={<BlogDetail/>}/>
           <Route path='/contact' element={<Contact/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/userBlog" element={<UserBlog/>}/>
+          <Route path='/write' element={<Write/>}/>
           <Route path="/profile" element={<Profile/>}/>
         </Routes>
     </>
