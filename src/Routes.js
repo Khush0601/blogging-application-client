@@ -26,10 +26,13 @@ const AppRoutes = () => {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/blogDetail/:id' element={<BlogDetail/>}/>
           <Route path='/contact' element={<Contact/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/userBlog" element={<UserBlog/>}/>
-          <Route path='/write' element={<Write/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+       
+           <Route path="/dashboard" element={<Dashboard />}>
+            <Route index element={<Navigate to="userBlog" />} />
+            <Route path="userBlog" element={<UserBlog />} />
+            <Route path="write" element={<Write />} />
+            <Route path="profile" element={<Profile />} />
+           </Route>
         </Routes>
     </>
   )
