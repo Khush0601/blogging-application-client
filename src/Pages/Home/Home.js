@@ -17,7 +17,7 @@ const Home = () => {
     <AppHeader headerTitle={'Welcome to Our Blog'}
       headerDesc={`Start your blog today and  join a community of writers and readers who are passionate about sharing their stories and ideas.
         We offer everything you need to get started,from helpful tips and tutorials.`}
-        learnmore={'Learn more --->'}
+        learnmore={'Learn more ➡'}
     />
 
     <div className=' bg-slate-200 w-full py-6  px-32'>

@@ -10,7 +10,7 @@ const All = () => {
   React.useEffect(()=>{
   const getAllBlogs=async()=>{
     try{
-    const allBlogs=await axios.get('http://localhost:8000/bloggingApplication/api/v1/blog/getAllBlogs')
+    const allBlogs=await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/getAllBlogs`)
     const blogsResponse=allBlogs?.data;
     setAllBlogs(blogsResponse)
 
