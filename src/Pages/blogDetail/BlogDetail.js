@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { TfiWrite } from "react-icons/tfi";
 import { SlLike } from "react-icons/sl";
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const BlogDetail = () => {
+    // const {user}=useContext()
     const params=useParams()
     const navigate=useNavigate()
     const[blogDetails,setBlogDetails]=useState([])
@@ -34,7 +35,7 @@ const BlogDetail = () => {
       <div className=''>logo</div>
       <div className='flex items-center'> 
       <div className='mx-4 flex items-center'>
-     <div className="p-2 bg-amber-100 text-amber-600 rounded-full shadow-md hover:bg-amber-200 transition">
+     <div className="p-2 bg-amber-100 text-amber-600 rounded-full cursor-pointer shadow-md hover:bg-amber-200 transition">
       <TfiWrite size={20} onClick={()=>navigate('/createBlog')}/>
      </div>
       <div className=''>Write</div>

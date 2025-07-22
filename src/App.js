@@ -30,9 +30,9 @@ const App = () => {
    <UserContext.Provider value={{user:user,setUser:setUser}}>
     <div>
      {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
-      {/* routes part will be here */}
-      <AppRoutes/>
+     <AppRoutes/>
      </>}
+     
      <ToastContainer />
      
     </div>

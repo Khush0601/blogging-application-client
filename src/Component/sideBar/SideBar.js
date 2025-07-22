@@ -8,12 +8,12 @@ const SideBar = () => {
     `w-full px-4 py-3 rounded-lg font-medium transition-all ${
       pathname === path
         ? 'bg-amber-600 text-white text-center'
-        : 'hover:bg-amber-100 text-gray-800 text-center '
+        : 'hover:bg-amber-100 text-gray-800 text-center'
     }`;
 
   return (
     <>
-      {/* Desktop Sidebar */}
+      {/* Desktop view */}
       <div className="hidden md:block bg-green-200 shadow w-64 min-h-screen p-4">
         <nav className="flex flex-col gap-2">
           <Link to="/dashboard/userBlog" className={linkStyle('/dashboard/userBlog')}>
@@ -28,7 +28,7 @@ const SideBar = () => {
         </nav>
       </div>
 
-      {/* Mobile Bottom Nav */}
+      {/* Mobile view*/}
       <div className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t flex justify-around px-4 py-2 shadow-md">
         <Link to="/dashboard/userBlog" className={linkStyle('/dashboard/userBlog')}>
           Blog
