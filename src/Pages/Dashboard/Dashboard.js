@@ -14,9 +14,9 @@ const Dashboard = () => {
       </div>
 
       {/* Main Layout */}
-     <div className="flex min-h-screen bg-gray-300">
+     <div className="flex min-h-screen ">
        <SideBar />
-       <div className="flex-1 p-4 bg-gray-200">
+       <div className="flex-1 p-4">
          <Outlet />
        </div>
      </div>
