@@ -1,8 +1,9 @@
 import React from 'react'
+import BlogFetcher from '../blogFetcher/BlogFetcher'
 
 const Ai = () => {
   return (
-    <div>Ai</div>
+    <BlogFetcher category={'ai'}/>
   )
 }
 

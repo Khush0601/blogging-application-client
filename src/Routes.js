@@ -13,6 +13,7 @@ import Dashboard from './Pages/Dashboard/Dashboard'
 import UserBlog from './Component/userBlog/UserBlog'
 import Write from './Component/write/Write'
 import Profile from './Component/profile/Profile'
+import CreateBlog from './Component/createBlog/CreateBlog'
 const AppRoutes = () => {
   return (
     <>
@@ -26,7 +27,7 @@ const AppRoutes = () => {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/blogDetail/:id' element={<BlogDetail/>}/>
           <Route path='/contact' element={<Contact/>}/>
-       
+           <Route path='/createBlog' element={<CreateBlog/>}/>
            <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Navigate to="userBlog" />} />
             <Route path="userBlog" element={<UserBlog />} />
