@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { TfiWrite } from "react-icons/tfi";
 import { SlLike } from "react-icons/sl";
 import { FaRegCommentDots } from "react-icons/fa6";
@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 const BlogDetail = () => {
     const params=useParams()
+    const navigate=useNavigate()
     const[blogDetails,setBlogDetails]=useState([])
     console.log(params.id)
 
@@ -24,7 +25,7 @@ const BlogDetail = () => {
       }
     }
     fetchBlogDetails()
-   },[])
+   },[params.id])
 
    console.log(blogDetails)
   return (
@@ -33,7 +34,9 @@ const BlogDetail = () => {
       <div className=''>logo</div>
       <div className='flex items-center'> 
       <div className='mx-4 flex items-center'>
-      <div className='mx-1'><TfiWrite/></div>
+     <div className="p-2 bg-amber-100 text-amber-600 rounded-full shadow-md hover:bg-amber-200 transition">
+      <TfiWrite size={20} onClick={()=>navigate('/createBlog')}/>
+     </div>
       <div className=''>Write</div>
       </div>
       <div className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center '>A</div>

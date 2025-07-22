@@ -1,16 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const SideBar = () => {
-  return (
-    <div className="p-6 space-y-4 text-gray-800 bg-yellow-400">
-        <nav className="flex flex-col  space-y-4">
-            <Link to="/dashboard/userBlog">Blog</Link>
-            <Link to="/dashboard/write">Write</Link>
-            <Link to="/dashboard/profile">Profile</Link>
-        </nav>
-    </div>
-  )
-}
+  const { pathname } = useLocation();
 
-export default SideBar
+  const linkStyle = (path) =>
+    `w-full px-4 py-3 rounded-lg font-medium transition-all ${
+      pathname === path
+        ? 'bg-amber-600 text-white'
+        : 'hover:bg-amber-100 text-gray-800'
+    }`;
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block bg-white shadow w-64 min-h-screen p-4">
+        <nav className="flex flex-col gap-2">
+          <Link to="/dashboard/userBlog" className={linkStyle('/dashboard/userBlog')}>
+            Blog
+          </Link>
+          <Link to="/dashboard/write" className={linkStyle('/dashboard/write')}>
+            Write
+          </Link>
+          <Link to="/dashboard/profile" className={linkStyle('/dashboard/profile')}>
+            Profile
+          </Link>
+        </nav>
+      </div>
+
+      {/* Mobile Bottom Nav */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t flex justify-around px-4 py-2 shadow-md">
+        <Link to="/dashboard/userBlog" className={linkStyle('/dashboard/userBlog')}>
+          Blog
+        </Link>
+        <Link to="/dashboard/write" className={linkStyle('/dashboard/write')}>
+          Write
+        </Link>
+        <Link to="/dashboard/profile" className={linkStyle('/dashboard/profile')}>
+          Profile
+        </Link>
+      </div>
+    </>
+  );
+};
+
+export default SideBar;
