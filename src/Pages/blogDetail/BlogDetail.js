@@ -6,9 +6,10 @@ import { FaRegCommentDots } from "react-icons/fa6";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { UserContext } from '../../App';
 
 const BlogDetail = () => {
-    // const {user}=useContext()
+    const {user}=useContext(UserContext)
     const params=useParams()
     const navigate=useNavigate()
     const[blogDetails,setBlogDetails]=useState([])
@@ -27,8 +28,8 @@ const BlogDetail = () => {
     }
     fetchBlogDetails()
    },[params.id])
-
-   console.log(blogDetails)
+  console.log(user,'user')
+   console.log(blogDetails,'blogDetails')
   return (
    <div className='bg-slate-100 w-full h-full'>
      <div className='flex justify-between px-10 py-4 items-center'>
@@ -40,7 +41,7 @@ const BlogDetail = () => {
      </div>
       <div className=''>Write</div>
       </div>
-      <div className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center '>A</div>
+      <img className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center ' src={user?.picture} alt={user?.name}/>
       </div>
      </div>
      <div  className=' flex flex-col  px-10 md:px-24 '>
@@ -50,8 +51,8 @@ const BlogDetail = () => {
       <div className=' text-xl font-medium py-2 xs:text-2xl xs:font-semibold xs:py-4 sm:text-3xl md:text-4xl md:font-bold'>{blogDetails?.title}</div>
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center'>
         <div className=' flex items-center py-2 sm:py-4 '>
-           <div className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center '>A</div>
-           <div className='text-lg font-normal px-2 sm:text-xl sm:font-medium '>Name</div>
+           <div className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center '>K</div>
+           <div className='text-lg font-normal px-2 sm:text-xl sm:font-medium '>{blogDetails?.userId?.name}</div>
         </div>
         <div className='px-2 sm:px-0'>{blogDetails?.createdAt?.slice(0, 10)}</div>
       </div>
