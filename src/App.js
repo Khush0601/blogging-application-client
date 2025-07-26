@@ -3,6 +3,7 @@ import AppJourney from './Component/AppJourney/AppJourney'
 import AppRoutes from './Routes'
 import { ToastContainer} from 'react-toastify';
 import FireBaseProvider from './Context/Firebase.Context';
+import axios from 'axios';
 export const UserContext=createContext(null);
 
 const App = () => {
@@ -24,7 +25,35 @@ const App = () => {
     setIsUserCame(false)
    }
   console.log(isUserCame,'isUse')
-    
+   
+  
+  React.useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  const autoLogin = async () => {
+    try {
+      const userDetails = await axios.get( 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const userResultantData = userDetails.data;
+      setUser(userResultantData); 
+    } catch (e) {
+      console.log("Auto-login failed:", e.message);
+      localStorage.removeItem("token"); 
+    }
+  };
+
+  if (token) {
+    autoLogin();
+  }
+}, []);
+
+
   return (
    <FireBaseProvider >
    <UserContext.Provider value={{user:user,setUser:setUser}}>
