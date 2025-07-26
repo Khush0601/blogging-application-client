@@ -1,6 +1,7 @@
 import React from 'react'
 import AppHeader from '../../Component/appHeader/AppHeader'
 import TestimonialCard from '../../Component/testimonialCards/TestimonialCard'
+import Footer from '../../Component/footer/Footer'
 
 const About = () => {
   return (
@@ -29,6 +30,7 @@ const About = () => {
           <div className='text-5xl my-14 font-bold border-b-2 py-3 px-4 border-solid border-slate-200 text-center lg:text-left'>Top Authors</div>
           <div className=''><TestimonialCard/></div>
   </div>
+  <Footer/>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { UserContext } from '../../App';
+import Footer from '../../Component/footer/Footer';
 
 const BlogDetail = () => {
     const {user}=useContext(UserContext)
@@ -74,7 +75,7 @@ const BlogDetail = () => {
 
       </div>
      </div>
-
+    <Footer/>
 
     </div>
   )

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import AppHeader from '../../Component/appHeader/AppHeader';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SuccessToast } from '../../utils/toast';
+import Footer from '../../Component/footer/Footer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   SuccessToast('Thanku,we will get back to u ')
+   SuccessToast('Thanku,we will get back to u')
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -83,6 +84,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
