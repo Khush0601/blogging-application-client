@@ -7,6 +7,7 @@ import Security from '../../Component/security/Security'
 import Ai from '../../Component/ai/Ai'
 import Apps from '../../Component/apps/Apps'
 import Tech from '../../Component/tech/Tech'
+import Footer from '../../Component/footer/Footer'
 
 const Home = () => {
   const [activeCategory,setActiveCategory]=useState('All')
@@ -47,7 +48,7 @@ const Home = () => {
 
     </div>
 
-
+   <Footer/>
 
 
     </div>
