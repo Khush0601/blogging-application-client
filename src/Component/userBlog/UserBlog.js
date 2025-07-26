@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { UserContext } from '../../App'; 
+import { ErrorToast, SuccessToast } from '../../utils/toast';
 
 const UserBlog = () => {
   const { user } = useContext(UserContext); 
@@ -31,12 +32,26 @@ const UserBlog = () => {
   };
 
   const handleEdit = (blogId) => {
-    console.log('Edit:', blogId);
-   
+    navigate(`/editBlog/${blogId}`);
   };
 
-  const handleDelete = (blogId) => {
-    console.log('Delete:', blogId);
+  const handleDelete = async(blogId) => {
+   const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
+    if (!confirmDelete) {
+      return
+    }
+    try{
+     const deleteBlog=await axios.delete("http://localhost:8000/bloggingApplication/api/v1/blog/deleteBlog", {
+      data: { blogId }
+    });
+   
+    SuccessToast(deleteBlog?.data?.message)
+    setUserBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== blogId));
+    }
+    catch(err){
+    ErrorToast(err?.response?.data?.message)
+    console.log(err?.response?.data?.message)
+    }
    
   };
 
