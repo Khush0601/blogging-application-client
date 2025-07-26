@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const SideBar = () => {
   const { pathname } = useLocation();
-
+  const {user}=useContext(UserContext)
   const linkStyle = (path) =>
     `w-full px-4 py-3 rounded-lg font-medium transition-all ${
       pathname === path
@@ -16,8 +17,8 @@ const SideBar = () => {
       {/* Desktop view */}
       <div className="hidden md:block bg-green-200 shadow w-64 min-h-screen p-4">
         <nav className="flex flex-col gap-2">
-          <Link to="/dashboard/userBlog" className={linkStyle('/dashboard/userBlog')}>
-            Blog
+          <Link to={`/dashboard/userBlog`} className={linkStyle('/dashboard/userBlog')}>
+          Blog
           </Link>
           <Link to="/dashboard/write" className={linkStyle('/dashboard/write')}>
             Write
