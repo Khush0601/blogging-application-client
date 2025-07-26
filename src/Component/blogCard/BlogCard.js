@@ -1,23 +1,36 @@
-import React from 'react'
-import { useNavigate } from 'react-router'
+import React from 'react';
+import { useNavigate } from 'react-router';
 
-const BlogCard = ({blogBanner,title,date,blogId}) => {
-  const navigate=useNavigate()
-  const onBlogClick=(blogId)=>{
-  navigate(`/blogDetail/${blogId}`)
-  }
-  console.log(blogId)
+const BlogCard = ({ blogBanner, title, date, blogId }) => {
+  const navigate = useNavigate();
+
+  const onBlogClick = (blogId) => {
+    navigate(`/blogDetail/${blogId}`);
+  };
+
   return (
-    <div className='w-72 bg-red-300 h-80 p-4 flex flex-col m-6 rounded-md shadow-lg' onClick={()=>onBlogClick(blogId)}>
-      <div className='w-64 bg-yellow-200 h-32 mb-2'>
-        <img src={blogBanner} alt={title} className='w-64 h-32 mb-2 object-cover bg-gray-200 ' />
+    <div
+      className="w-72 h-80 bg-white p-2 flex flex-col justify-between m-4 rounded-md shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+      onClick={() => onBlogClick(blogId)}
+    >
+     <div className="h-40 w-full rounded overflow-hidden mb-2">
+        <img
+          src={blogBanner}
+          alt={title}
+          className="h-full w-full object-cover"
+        />
       </div>
-      <div className='w-64 bg-yellow-100 h-32 mb-2'>{title}</div>
-      <div className='w-64 bg-yellow-200 h-8 mb-1'>khshboo</div>
-      <div className='w-64 bg-yellow-200 h-8 '>{date}</div>
-      <div></div>
-    </div>
-  )
-}
 
-export default BlogCard
+     
+      <div className="text-[15px] font-semibold text-gray-800 line-clamp-2 mb-1 flex-grow">
+        {title}
+      </div>
+
+      
+      <div className="text-sm text-gray-600">Khushboo</div>
+      <div className="text-xs text-gray-400">{date}</div>
+    </div>
+  );
+};
+
+export default BlogCard;

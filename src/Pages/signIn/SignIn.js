@@ -37,9 +37,9 @@ const SignIn = () => {
       email: signInDetails.email,
       password: signInDetails.password,
     });
-    console.log('Login successful:', response.data);
+    // console.log('Login successful:', response.data);
     SuccessToast('Login successful!');
-    // setUser()
+    setUser( response.data)
    } 
    catch (error) {
     
@@ -52,13 +52,13 @@ const SignIn = () => {
 }
   }
 
-  console.log(signInDetails)
+ 
   const {auth,fbProvider} = useFirebaseContext();
   
   const onGoogleLogin=async()=>{
     try{
      const googleResponse=await  signInWithPopup(auth,fbProvider)
-     console.log(googleResponse)
+    //  console.log(googleResponse)
      let googleToken= await googleResponse.user.getIdToken()
      let data = '';
   
@@ -72,13 +72,15 @@ const SignIn = () => {
     data : data
   };
    let registeredData=await axios.request(config)
-   setUser(registeredData.data)
+   localStorage.setItem("token", registeredData.data.token);
+   setUser(registeredData.data.user);
+   
    SuccessToast('Login successfully')
    setTimeout(()=>{
     navigate('/home')
    },2000)
 
-    console.log('userlogin',registeredData)
+    // console.log('userlogin',registeredData)
     }
     catch(e){
       console.error("Login error:", e);

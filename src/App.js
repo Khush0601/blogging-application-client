@@ -27,24 +27,22 @@ const App = () => {
   console.log(isUserCame,'isUse')
    
   
-  React.useEffect(() => {
+ React.useEffect(() => {
   const token = localStorage.getItem("token");
 
   const autoLogin = async () => {
     try {
-      const userDetails = await axios.get( 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const userDetails = await axios.get("http://localhost:8000/bloggingApplication/api/v1/user/autoLogin", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      const userResultantData = userDetails.data;
-      setUser(userResultantData); 
+      
+      setUser(userDetails.data.user);
     } catch (e) {
       console.log("Auto-login failed:", e.message);
-      localStorage.removeItem("token"); 
+      localStorage.removeItem("token");
     }
   };
 
@@ -54,6 +52,7 @@ const App = () => {
 }, []);
 
 
+console.log(user)
   return (
    <FireBaseProvider >
    <UserContext.Provider value={{user:user,setUser:setUser}}>

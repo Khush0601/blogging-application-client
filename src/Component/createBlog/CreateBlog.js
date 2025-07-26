@@ -1,21 +1,49 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
+import { ErrorToast, SuccessToast } from '../../utils/toast';
 
 const CreateBlog = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+    const {user}=useContext(UserContext)
 
   const [title, setTitle] = useState('');
   const [banner, setBanner] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('AI');
 
+  const handleSubmitBlog=async(e)=>{
+   e.preventDefault()
+   try{
+    const response=await axios.post('http://localhost:8000/bloggingApplication/api/v1/blog/createBlog',{
+      blogBanner:banner,
+        title:title,
+        content:content,
+        category:category,
+        userId:user._id,
+
+     
+    })
+    console.log(response)
+    SuccessToast(response?.data?.message || 'Blog posted successfully!');
+    setTitle('')
+    setBanner('')
+    setContent('')
+    setCategory('AI')
+   }
+   catch(e){
+    console.log(e?.response?.data?.message)
+    ErrorToast(e?.response?.data?.message || 'Failed to post blog');
+   }
+  }
+  console.log('user',user)
   
   return (
      <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Create a New Blog</h2>
 
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmitBlog}>
         <input
           type="text"
           placeholder="Blog Banner URL"
