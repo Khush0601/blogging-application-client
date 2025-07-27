@@ -5,6 +5,7 @@ import Footer from '../../Component/footer/Footer';
 
 const Services = () => {
   const services = [
+    
     {
       title: 'Refreshing Design',
       description: 'Clean and creative UI that captures user attention and improves experience.',
