@@ -55,6 +55,7 @@ const UserBlog = () => {
    
   };
 
+
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Your Blogs</h2>
@@ -64,16 +65,11 @@ const UserBlog = () => {
       ) : (
         <div className="p-4 space-y-4">
           {userBlogs.map((blog) => (
-            <div
-              key={blog._id}
-              className="flex flex-col sm:flex-row bg-white shadow rounded-md overflow-hidden hover:shadow-md transition cursor-pointer"
-            >
-              <img
-                src={blog.blogBanner}
-                alt={blog.title}
-                className="w-full sm:w-48 h-36 sm:h-32 object-cover"
+            <div key={blog._id} className="flex flex-col sm:flex-row bg-white shadow rounded-md overflow-hidden hover:shadow-md transition cursor-pointer" >
+              <img src={blog.blogBanner} alt={blog.title} className="w-full sm:w-48 h-36 sm:h-32 object-cover"
                 onClick={() => handleBlogClick(blog._id)}
-              />
+               />
+               
               <div className="p-4 flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-lg font-semibold">{blog.title}</h3>
