@@ -9,6 +9,7 @@ const EditBlog = () => {
   const [editTitle, setEditTitle] = useState('');
   const [editBanner, setEditBanner] = useState('');
   const [editContent, setEditContent] = useState('');
+  
   const [editCategory, setEditCategory] = useState('AI');
 
   useEffect(() => {
