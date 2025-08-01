@@ -74,7 +74,6 @@ const SignIn = () => {
    let registeredData=await axios.request(config)
    localStorage.setItem("token", registeredData.data.token);
    setUser(registeredData.data.user);
-   
    SuccessToast('Login successfully')
    setTimeout(()=>{
     navigate('/home')

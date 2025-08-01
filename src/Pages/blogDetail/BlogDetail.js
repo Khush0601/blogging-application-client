@@ -29,6 +29,7 @@ const BlogDetail = () => {
     }
     fetchBlogDetails()
    },[params.id])
+   
   console.log(user,'user')
    console.log(blogDetails,'blogDetails')
   return (

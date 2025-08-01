@@ -15,7 +15,7 @@ const SideBar = () => {
   return (
     <>
       {/* Desktop view */}
-      <div className="hidden md:block bg-green-200 shadow w-64 min-h-screen p-4">
+      <div className="hidden md:block bg-slate-500 shadow w-64 min-h-screen p-4">
         <nav className="flex flex-col gap-2">
           <Link to={`/dashboard/userBlog`} className={linkStyle('/dashboard/userBlog')}>
           Blog
