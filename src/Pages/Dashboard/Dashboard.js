@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import SideBar from '../../Component/sideBar/SideBar';
 import { Outlet } from 'react-router-dom';
 import { UserContext } from '../../App';
+import logo from "../../Assets/blogging-icon-27.jpg"
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -10,7 +11,9 @@ const Dashboard = () => {
     <div className="h-screen w-full flex flex-col overflow-hidden">
 
       <div className="h-[72px] w-full bg-white shadow flex justify-between items-center px-6 py-4 fixed top-0 left-0 z-50">
-        <div className="text-xl font-bold">Logo</div>
+        <div className="text-xl font-bold">
+          <img src={logo}  alt="logo" className="w-10 h-10 object-contain" />
+        </div>
         <div className="w-12 h-12 rounded-full bg-red-100 flex justify-center items-center text-lg font-medium">
           {user?.name?.charAt(0)}
         </div>

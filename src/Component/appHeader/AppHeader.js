@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { RxCross2 } from "react-icons/rx";
+import logo from '../../Assets/blogging-icon-27.jpg'
 const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
   const [isOpen,setIsOpen]=useState(false)
  const navigate=useNavigate()
@@ -11,7 +12,10 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
    
     <div className="w-full px-2 bg-black h-[460px] xs: h-[400px] flex flex-col  items-center">
      <div className="text-white flex  mt-2 w-full items-center justify-between gap-16 py-2  md:px-4 ">
-       <div className=" mx-1 flex items-center justify-center  cursor-pointer">logo</div>
+       <div className="mx-1 flex items-center justify-center cursor-pointer">
+       <img src={logo} alt="app logo" className="w-12 h-12 object-contain" />
+     </div>
+
         <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden" onClick={()=>setIsOpen(true)}>menu</div>
          <div className="hidden md:flex cursor-pointer mx-2 lg:mx-16 xl:mx-24  items-center justify-center">
           <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
