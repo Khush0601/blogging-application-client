@@ -8,16 +8,21 @@ import axios from 'axios';
 import { useState } from 'react';
 import { UserContext } from '../../App';
 import Footer from '../../Component/footer/Footer';
+import logo from "../../Assets/blogging-icon-27.jpg"
+import BackButton from '../../Component/backButton/BackButton';
+import Loading from '../../Component/loading/Loading';
 
 const BlogDetail = () => {
     const {user}=useContext(UserContext)
     const params=useParams()
     const navigate=useNavigate()
     const[blogDetails,setBlogDetails]=useState([])
+    const[loading,setLoading]=useState(true)
     console.log(params.id)
 
    useEffect(()=>{
      const fetchBlogDetails=async()=>{
+      setLoading(true)
       try{
       const apiResponse=await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/${params.id}`)
       const result=apiResponse?.data;
@@ -26,6 +31,9 @@ const BlogDetail = () => {
       catch(e){
         console.log(e)
       }
+      finally {
+  setLoading(false);
+}
     }
     fetchBlogDetails()
    },[params.id])
@@ -35,7 +43,9 @@ const BlogDetail = () => {
   return (
    <div className='bg-slate-100 w-full h-full'>
      <div className='flex justify-between px-10 py-4 items-center'>
-      <div className=''>logo</div>
+      <div >
+         <img src={logo} alt="app logo" className="w-12 h-12 object-contain" />
+      </div>
       <div className='flex items-center'> 
       <div className='mx-4 flex items-center'>
      <div className="p-2 bg-amber-100 text-amber-600 rounded-full cursor-pointer shadow-md hover:bg-amber-200 transition">
@@ -46,7 +56,8 @@ const BlogDetail = () => {
       <img className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center ' src={user?.picture} alt={user?.name}/>
       </div>
      </div>
-     <div  className=' flex flex-col  px-10 md:px-24 '>
+     <BackButton/>
+    {loading ? <Loading/> : <div  className=' flex flex-col  px-10 md:px-24 '>
       <img src={blogDetails?.blogBanner}
         alt="blog-Banner" className='h-[400px] w-full object-cover'
       />
@@ -75,7 +86,7 @@ const BlogDetail = () => {
       {blogDetails?.content}
 
       </div>
-     </div>
+     </div>}
     <Footer/>
 
     </div>

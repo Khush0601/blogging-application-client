@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { ErrorToast, SuccessToast } from '../../utils/toast';
+import BackButton from '../backButton/BackButton';
 
 const EditBlog = () => {
     const { blogId } = useParams();
@@ -54,6 +55,7 @@ const EditBlog = () => {
   }
   return (
    <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
+   <BackButton/>
       <h2 className="text-2xl font-bold mb-6 text-center">Edit Blog</h2>
 
       <form className="space-y-4" onSubmit={handleSubmitBlog}>

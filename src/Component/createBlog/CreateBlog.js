@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { ErrorToast, SuccessToast } from '../../utils/toast';
+import BackButton from '../backButton/BackButton';
 
 const CreateBlog = () => {
     const navigate = useNavigate();
@@ -41,7 +42,11 @@ const CreateBlog = () => {
   
   return (
      <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
-      <h2 className="text-2xl font-bold mb-6 text-center">Create a New Blog</h2>
+     
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        <BackButton/>
+       Create a Blog
+      </h2>
 
       <form className="space-y-4" onSubmit={handleSubmitBlog}>
         <input

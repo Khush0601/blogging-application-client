@@ -4,14 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { UserContext } from '../../App'; 
 import { ErrorToast, SuccessToast } from '../../utils/toast';
+import Loading from '../loading/Loading';
 
 const UserBlog = () => {
   const { user } = useContext(UserContext); 
   const [userBlogs, setUserBlogs] = useState([]);
+  const [loading,setLoading]=useState(true)
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserBlogs = async () => {
+      setLoading(true)
       try {
         const response = await axios.get(
           `http://localhost:8000/bloggingApplication/api/v1/blog/user/${user._id}`
@@ -20,6 +23,9 @@ const UserBlog = () => {
       } catch (error) {
         console.error('Failed to fetch user blogs:', error);
       }
+       finally {
+      setLoading(false);
+       }
     };
 
     if (user?._id) {
@@ -60,7 +66,8 @@ const UserBlog = () => {
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Your Blogs</h2>
 
-      {userBlogs.length === 0 ? (
+     {loading ?<Loading/> :
+        userBlogs.length === 0 ? (
         <p>No blogs posted yet.</p>
       ) : (
         <div className="p-4 space-y-4">

@@ -2,22 +2,26 @@ import React from 'react'
 import BlogCard from '../blogCard/BlogCard'
 import axios from 'axios'
 import { useState } from 'react'
+import { ErrorToast } from '../../utils/toast'
+import Loading from '../loading/Loading'
 // import { useNavigate } from 'react-router'
 
 const BlogFetcher = ({category}) => {
 //   const navigate=useNavigate()
   const [allBlogs,setAllBlogs]=useState([])
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   
 
   React.useEffect(()=>{
   const getAllBlogs=async()=>{
+    setLoading(true)
     try{
     const allBlogs=await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/getAllBlogs`,
       {
           params: {
             pageNumber: page,
-           type: category,
+            type: category,
           }
         }
     )
@@ -27,8 +31,13 @@ const BlogFetcher = ({category}) => {
     }
     catch(e){
     console.log(e?.response?.data?.message)
+    ErrorToast(e?.response?.data?.message)
     }
+  finally {
+  setLoading(false);
+}
   }
+  
 
  getAllBlogs()
   },[ page, category])
@@ -49,6 +58,7 @@ const BlogFetcher = ({category}) => {
   return (
     <div className='flex  flex-col md:flex-row md:justify-between'>
       
+      {loading ? <Loading/> :
       <div className='flex justify-center flex-wrap '>
       {allBlogs.map((blogs)=>{
         return  <BlogCard key={blogs._id} blogBanner={blogs?.blogBanner} title={blogs?.title}  date={blogs?.updatedAt} blogId={blogs._id} />
@@ -75,6 +85,7 @@ const BlogFetcher = ({category}) => {
 
 
       </div>
+      }
 
        <div className='text-center md:w-1/4 mt-6 md:mt-0'>latest post</div>
        
