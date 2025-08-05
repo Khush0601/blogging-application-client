@@ -5,6 +5,7 @@ const Blog = () => {
   return (
     <div>
         <AppHeader headerTitle={'Blog Page'}/>
+        
     </div>
   )
 }
