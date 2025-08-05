@@ -122,7 +122,7 @@ const Register = () => {
    }
 
   }
-  
+
   const onGoogleLogin=async()=>{
   try{
    const googleResponse=await  signInWithPopup(auth,fbProvider)
@@ -154,6 +154,8 @@ const Register = () => {
   console.log(signUpForm)
   console.log(user,'user')
   console.log(otp)
+
+  
   return (
     <div className=' w-screen h-screen flex justify-center items-center'>
         <div className='w-full  xs:w-96 m-2.5 p-2.5 flex flex-col items-center justify-center '>
