@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { RxCross2 } from "react-icons/rx";
 import logo from '../../Assets/blogging-icon-27.jpg'
+
 const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
   const [isOpen,setIsOpen]=useState(false)
  const navigate=useNavigate()
@@ -34,7 +35,7 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
           Login
         </div>
          <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 ml-2 items-center justify-center " 
-         onClick={()=>navigate('/dashboard')}>
+         onClick={()=>navigate('/dashboard/userBlog')}>
           Dashboard
         </div>
         </div>

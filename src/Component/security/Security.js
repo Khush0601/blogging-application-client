@@ -3,7 +3,7 @@ import BlogFetcher from '../blogFetcher/BlogFetcher'
 
 const Security = () => {
   return (
-    <BlogFetcher category={'security'}/>
+    <BlogFetcher category={'Security'}/>
   )
 }
 

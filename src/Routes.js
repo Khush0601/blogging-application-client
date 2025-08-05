@@ -15,6 +15,7 @@ import Write from './Component/write/Write'
 import Profile from './Component/profile/Profile'
 import CreateBlog from './Component/createBlog/CreateBlog'
 import EditBlog from './Component/editBlog/EditBlog'
+import PrivateRoutes from './Component/privateRoute/PrivateRoute'
 const AppRoutes = () => {
   return (
     <>
@@ -28,11 +29,11 @@ const AppRoutes = () => {
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/blogDetail/:id' element={<BlogDetail/>}/>
           <Route path='/contact' element={<Contact/>}/>
-           <Route path='/createBlog' element={<CreateBlog/>}/>
+           <Route path='/createBlog' element={<PrivateRoutes><CreateBlog/></PrivateRoutes>}/>
           <Route path="/editBlog/:blogId" element={<EditBlog/>} />
           
-           <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<Navigate to="userBlog" />} />
+           <Route path="/dashboard" element={<PrivateRoutes><Dashboard/></PrivateRoutes>}>
+            <Route index element={<UserBlog />} />
             <Route path="userBlog" element={<UserBlog />} />
             <Route path="write" element={<Write />} />
             <Route path="profile" element={<Profile />} />

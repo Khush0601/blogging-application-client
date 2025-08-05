@@ -3,7 +3,7 @@ import BlogFetcher from '../blogFetcher/BlogFetcher'
 
 const Ai = () => {
   return (
-    <BlogFetcher category={'ai'}/>
+    <BlogFetcher category={'AI'}/>
   )
 }
 

@@ -3,7 +3,7 @@ import BlogFetcher from '../blogFetcher/BlogFetcher'
 
 const Apps = () => {
   return (
- <BlogFetcher category={'apps'}/>
+ <BlogFetcher category={'Apps'}/>
   )
 }
 
