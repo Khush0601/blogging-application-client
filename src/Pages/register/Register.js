@@ -121,8 +121,8 @@ const Register = () => {
    }
    }
 
-    
   }
+  
   const onGoogleLogin=async()=>{
   try{
    const googleResponse=await  signInWithPopup(auth,fbProvider)
