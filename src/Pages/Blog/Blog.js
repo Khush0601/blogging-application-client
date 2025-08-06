@@ -6,6 +6,7 @@ const Blog = () => {
     <div>
         <AppHeader headerTitle={'Blog Page'}/>
         
+        
     </div>
   )
 }
