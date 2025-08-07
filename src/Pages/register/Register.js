@@ -43,6 +43,7 @@ const Register = () => {
        })
        setIsOtpGenerated(true)
        SuccessToast('otp sent successfully')
+       
      }
      catch(err){
       console.log(err)
