@@ -74,6 +74,8 @@ const Register = () => {
       ErrorToast(err?.response?.data?.message)
      }
   }
+
+  
   const validateForm = () => {
     
    if(!validator.isAlpha(signUpForm.name.replace(/\s/g, ''), 'en-US')){
