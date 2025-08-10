@@ -56,7 +56,7 @@ const BlogFetcher = ({category}) => {
   console.log(category,'currentCategory')
   console.log(allBlogs)
   return (
-    <div className='flex  flex-col md:flex-row md:justify-between'>
+    <div className='flex  flex-col sm:flex-row md:justify-between'>
       
       {loading ? <Loading/> :
       <div className='flex justify-center flex-wrap '>
@@ -87,7 +87,17 @@ const BlogFetcher = ({category}) => {
       </div>
       }
 
-       <div className='text-center md:w-1/4 mt-6 md:mt-0'>latest post</div>
+    <div className="bg-pink-300 w-full sm:w-1/3 lg:w-1/4 mt-6 sm:mt-0 p-4 sm:rounded-lg shadow-md text-center break-words">
+  <h2 className="text-lg font-semibold mb-4">Latest Post</h2>
+  <div className="space-y-2">
+    <p>Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo uuuuuuuuuuuuuuuuuuuuu</p>
+    <p>Hiihhhhhhhhhhhhhhhhh nnnnnnnnnnnnnnnnnnnnnn</p>
+    <p>Kkkk nnnnnnnnnnnnnnn bbbbbbbbbb ffffffffffffk</p>
+  </div>
+</div>
+
+
+
        
       </div> 
   )

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import { FiArrowRight } from 'react-icons/fi';
 
-const BlogCard = ({ blogBanner, title, date, blogId }) => {
+const BlogCard = ({ blogBanner, title, date, blogId, subtitle }) => {
   const navigate = useNavigate();
 
   const onBlogClick = (blogId) => {
@@ -10,25 +11,38 @@ const BlogCard = ({ blogBanner, title, date, blogId }) => {
 
   return (
     <div
-      className="w-72 h-80 bg-white p-2 flex flex-col justify-between m-4 rounded-md shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+      className="
+        relative 
+        w-full sm:w-72 md:w-80 
+        h-[320px] sm:h-[360px] md:h-[400px] 
+        m-2 sm:m-3 md:m-4 
+        rounded-lg 
+        overflow-hidden 
+        cursor-pointer 
+        group
+      "
       onClick={() => onBlogClick(blogId)}
     >
-     <div className="h-40 w-full rounded overflow-hidden mb-2">
-        <img
-          src={blogBanner}
-          alt={title}
-          className="h-full w-full object-cover"
-        />
-      </div>
+      {/* Image */}
+      <img
+        src={blogBanner}
+        alt={title}
+        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+      />
 
-     
-      <div className="text-[15px] font-semibold text-gray-800 line-clamp-2 mb-1 flex-grow">
-        {title}
-      </div>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
-      
-      <div className="text-sm text-gray-600">Khushboo</div>
-      <div className="text-xs text-gray-400">{date}</div>
+      {/* Text content */}
+      <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white">
+        <h2 className="text-lg sm:text-xl font-semibold mb-1">{title}</h2>
+        {subtitle && (
+          <p className="text-xs sm:text-sm text-gray-200 mb-3 sm:mb-4">{subtitle}</p>
+        )}
+        <div className="flex items-center text-amber-500 font-medium group-hover:underline">
+          Read More <FiArrowRight className="ml-2" />
+        </div>
+      </div>
     </div>
   );
 };
