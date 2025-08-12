@@ -18,6 +18,7 @@ const BlogDetail = () => {
     const navigate=useNavigate()
     const[blogDetails,setBlogDetails]=useState([])
     const[loading,setLoading]=useState(true)
+    const token = localStorage.getItem('token');
     console.log(params.id)
 
    useEffect(()=>{
@@ -36,8 +37,37 @@ const BlogDetail = () => {
 }
     }
     fetchBlogDetails()
-   },[params.id])
+   },[params.id,token])
    
+   const handleLike = async () => {
+    try {
+    const response = await axios.post(
+      `http://localhost:8000/bloggingApplication/api/v1/blog/${blogDetails._id}/like`,
+      {},
+     {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    
+     setBlogDetails((prev) => ({
+        ...prev,
+        likeCount: response.data.likeCount,
+        isLiked: !prev.isLiked,
+      }));
+  } catch (error) {
+   
+    if (error.response) {
+      alert(error.response.data.message || 'Failed to like the post');
+    } else {
+      alert('Something went wrong while liking the post.');
+    }
+    console.error('Error liking the post:', error);
+  }
+};
+
   console.log(user,'user')
    console.log(blogDetails,'blogDetails')
   return (
@@ -72,8 +102,14 @@ const BlogDetail = () => {
       <div className='flex justify-between items-center py-4 my-2 text-lg border-y-2 border-slate-200 border-solid '>
         <div className=' flex justify-between items-center'>
           <div className=' flex  items-center '>
-          <span><SlLike/></span>
-          <span className='px-0.5'>{blogDetails?.likeCount}</span>
+          <span  onClick={handleLike} style={{color: blogDetails?.isLiked ? 'red' : 'gray', cursor: 'pointer',userSelect: 'none',display: 'inline-flex', 
+           alignItems: 'center',
+           gap: '4px'
+          }}
+          >
+         <SlLike />
+         <span className='px-0.5'>{blogDetails?.likeCount}</span>
+         </span>
           </div>
           <div className='px-2 flex px-12 items-center'>
             <span><FaRegCommentDots/></span>
