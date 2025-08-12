@@ -52,10 +52,10 @@ const BlogDetail = () => {
     );
 
     
-     setBlogDetails((prev) => ({
+    setBlogDetails(prev => ({
         ...prev,
         likeCount: response.data.likeCount,
-        isLiked: !prev.isLiked,
+        isLiked: !prev.isLiked,  
       }));
   } catch (error) {
    
@@ -68,6 +68,7 @@ const BlogDetail = () => {
   }
 };
 
+  
   console.log(user,'user')
    console.log(blogDetails,'blogDetails')
   return (
