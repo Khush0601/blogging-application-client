@@ -11,15 +11,20 @@ import Footer from '../../Component/footer/Footer';
 import logo from "../../Assets/blogging-icon-27.jpg"
 import BackButton from '../../Component/backButton/BackButton';
 import Loading from '../../Component/loading/Loading';
+import { ErrorToast, SuccessToast } from '../../utils/toast';
 
 const BlogDetail = () => {
     const {user}=useContext(UserContext)
     const params=useParams()
     const navigate=useNavigate()
     const[blogDetails,setBlogDetails]=useState([])
+    const [comments,setComments]=useState([])
+    const[commentshow,setCommentShow]=useState(false)
+    const [showForm, setShowForm] = useState(false);
+    const [message, setMessage] = useState("");
     const[loading,setLoading]=useState(true)
     const token = localStorage.getItem('token');
-    console.log(params.id)
+    
 
    useEffect(()=>{
      const fetchBlogDetails=async()=>{
@@ -39,7 +44,27 @@ const BlogDetail = () => {
     fetchBlogDetails()
    },[params.id,token])
    
-   const handleLike = async () => {
+   useEffect(() => {
+  const fetchComments = async () => {
+   try {
+      const response = await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/comment/getComment/${params.id}`);
+      setComments(response.data);
+      
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      ErrorToast(error)
+    } 
+   
+  };
+
+  fetchComments();
+}, [params.id]);
+   
+const handleCommentClick=()=>{
+setCommentShow(!commentshow)
+}
+
+ const handleLike = async () => {
     try {
     const response = await axios.post(
       `http://localhost:8000/bloggingApplication/api/v1/blog/${blogDetails._id}/like`,
@@ -66,11 +91,47 @@ const BlogDetail = () => {
     }
     console.error('Error liking the post:', error);
   }
-};
+   };
+const handlePost=async()=>{
+  if(!message){
+   ErrorToast("Please write a comment first");
+   return
+  }
+  if (!token) {
+    ErrorToast("You must be logged in to comment");
+    return;
+  }
+try{
+const res = await axios.post("http://localhost:8000/bloggingApplication/api/v1/blog/comment/postComment", 
+        {
+          commentMessage: message,
+          blogId: params.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(res.data,'comments')
+      SuccessToast('comment posted successfully')
+      setMessage("");
+      setShowForm(false);
+      
+}
+catch(err){
+  console.error(err);
+  ErrorToast(err.response?.data?.message || "Error posting comment");
+}
+finally {
+setLoading(false);
+}
 
-  
-  console.log(user,'user')
-   console.log(blogDetails,'blogDetails')
+}
+
+
+ 
+     console.log(comments,'comments')
   return (
    <div className='bg-slate-100 w-full h-full'>
      <div className='flex justify-between px-10 py-4 items-center'>
@@ -112,18 +173,95 @@ const BlogDetail = () => {
          <span className='px-0.5'>{blogDetails?.likeCount}</span>
          </span>
           </div>
-          <div className='px-2 flex px-12 items-center'>
-            <span><FaRegCommentDots/></span>
-            <span className='px-0.5'>{blogDetails?.comment?.length}</span>
+          <div className='px-2 flex px-12 items-center cursor-pointer' onClick={handleCommentClick}
+>           <span><FaRegCommentDots/></span>
+            <span className='px-0.5'>{comments?.length ?? 0}</span>
           </div>
+           
         </div>
+        
         <div>share</div>
       </div>
+   {commentshow &&
+    <div className="mt-4 border border-gray-300 rounded-lg p-3 bg-white shadow-sm">
+       <div className="flex justify-between items-center mb-3">
+        <h3 className="text-lg font-semibold">Comments</h3>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="px-3 py-1 bg-amber-500 text-white text-sm rounded hover:bg-amber-600"
+        >
+          Add Comment
+        </button>
+      </div>
+
+      {showForm && (
+        <div className="flex items-start gap-3 mb-3 border-b pb-3">
+         <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
+            {user?.image ? (
+              <img
+                src={user.image}
+                alt={user.name}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-sm font-semibold text-gray-700">
+                {user?.name?.[0]?.toUpperCase()}
+              </span>
+            )}
+          </div>
+         
+          <div className="flex-1">
+            <p className="text-sm font-medium mb-1">{user?.name}</p>
+            <textarea
+              rows="2"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Write your comment..."
+              className="w-full border border-gray-300 rounded px-3 py-1 text-sm"
+            />
+            <button className="mt-2 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600" onClick={handlePost}>Post</button>
+          </div>
+        </div>
+      )}
+      {/* comments section will be visible  */}
+      {comments.length === 0 ? (
+        <p className="text-gray-500 text-sm">No comments yet</p>
+      ) : (
+        <ul className="space-y-3">
+          {comments.map((item, i) => (
+            <li key={i} className="flex items-start gap-3 border-b pb-2">
+              <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
+                {item.userImage ? (
+                  <img
+                    src={item.userImage}
+                    alt={item.userName}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-sm font-semibold text-gray-700">
+                    {item.userId?.name?.[0]?.toUpperCase()}
+                  </span>
+                )}
+              </div>
+             
+              <div>
+                <p className="text-sm font-medium">{item?.userId?.name}</p>
+                <p className="text-sm text-gray-700">{item.commentMessage}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+    }
+
+
       <div className='py-10'>
       {blogDetails?.content}
 
       </div>
      </div>}
+    
     <Footer/>
 
     </div>
