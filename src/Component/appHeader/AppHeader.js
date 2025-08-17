@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { RxCross2 } from "react-icons/rx";
 import logo from '../../Assets/blogging-icon-27.jpg'
+import { FaMoon } from 'react-icons/fa';
 
 const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
   const [isOpen,setIsOpen]=useState(false)
@@ -38,6 +39,9 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
          onClick={()=>navigate('/dashboard/userBlog')}>
           Dashboard
         </div>
+         <div className="hidden md:flex cursor-pointer px-4 py-2 ml-2 hover:scale-110 transition">
+                <FaMoon size={28} className="text-white-700" />
+               </div>
         </div>
  </div>
 
@@ -63,6 +67,9 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
                <div onClick={()=>navigate('/blog')}>Blogs</div>
                <div onClick={()=>navigate('/signIn')}>Login</div>
                <div onClick={()=>navigate('/dashboard')}>Dashboard</div>
+               <div className="cursor-pointer hover:scale-110 transition">
+                <FaMoon size={28} className="text-white-700" />
+               </div>
 
            </div>
         </div>
