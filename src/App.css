@@ -1,0 +1,29 @@
+app.css :---:root{ 
+    .dark{
+        --white:#ffffff;
+        --black:#000000;
+        --text:#ffffff;
+        --bg:#000000;
+        --border:gray;
+       
+    }
+    .light{
+        --white:#ffffff;
+        --black:#000000;
+        --text:#000000;
+        --bg:#ffffff;
+        --border:gray;
+       
+    }
+}
+
+.tapp-bg{
+    background-color: var(--bg);
+    
+}
+.tapp-text{
+    color:var(--text)
+}
+ .tapp-border{
+    border-color:var(--border);
+}

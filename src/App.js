@@ -4,11 +4,15 @@ import AppRoutes from './Routes'
 import { ToastContainer} from 'react-toastify';
 import FireBaseProvider from './Context/Firebase.Context';
 import axios from 'axios';
+import "./App.css"
 export const UserContext=createContext(null);
+export const ThemeContext = createContext(null);
 
 const App = () => {
    const [user,setUser]=useState(null)
   const [isUserCame,setIsUserCame]=useState(false)
+  const [isLight, setIsLight] = useState(true);
+  
   useEffect(()=>{
     const userCame=localStorage.getItem('isUserCame')
     console.log(userCame)
@@ -51,14 +55,18 @@ const App = () => {
   }
 }, []);
 
-
+console.log(isLight)
 console.log(user)
   return (
    <FireBaseProvider >
    <UserContext.Provider value={{user:user,setUser:setUser}}>
-    <div>
+   <ThemeContext.Provider value={{isLight:isLight,setIsLight:setIsLight}}>
+     <div>
      {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
-     <AppRoutes/>
+       <div className={`${isLight ? "light" : "dark"} tapp-bg`}>
+        <AppRoutes />
+       </div>
+    
      </>}
 
      
@@ -66,6 +74,7 @@ console.log(user)
      <ToastContainer />
      
     </div>
+   </ThemeContext.Provider>
    </UserContext.Provider>
     
    </FireBaseProvider>
