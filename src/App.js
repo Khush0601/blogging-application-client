@@ -5,6 +5,8 @@ import { ToastContainer} from 'react-toastify';
 import FireBaseProvider from './Context/Firebase.Context';
 import axios from 'axios';
 import "./App.css"
+import Chatbot from './Component/chatbot/Chatbot';
+
 export const UserContext=createContext(null);
 export const ThemeContext = createContext(null);
 
@@ -12,7 +14,7 @@ const App = () => {
    const [user,setUser]=useState(null)
   const [isUserCame,setIsUserCame]=useState(false)
   const [isLight, setIsLight] = useState(true);
-  
+
   useEffect(()=>{
     const userCame=localStorage.getItem('isUserCame')
     console.log(userCame)
@@ -65,6 +67,7 @@ console.log(user)
      {isUserCame ?<AppJourney onjouneyCompleted={onjouneyCompleted}/>:<>
        <div className={`${isLight ? "light" : "dark"} tapp-bg`}>
         <AppRoutes />
+        <Chatbot/>
        </div>
     
      </>}

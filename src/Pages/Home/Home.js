@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AppHeader from '../../Component/appHeader/AppHeader'
-import BlogCard from '../../Component/blogCard/BlogCard'
+
 import All from '../../Component/all/All'
 import Startups from '../../Component/startups/Startups'
 import Security from '../../Component/security/Security'
@@ -8,6 +8,7 @@ import Ai from '../../Component/ai/Ai'
 import Apps from '../../Component/apps/Apps'
 import Tech from '../../Component/tech/Tech'
 import Footer from '../../Component/footer/Footer'
+
 
 const Home = () => {
   const [activeCategory,setActiveCategory]=useState('All')
@@ -47,7 +48,7 @@ const Home = () => {
 
 
     </div>
-
+  
    <Footer/>
 
 
