@@ -102,7 +102,7 @@ useEffect(()=>{
     console.log('user',user)
     
   return (
-    <div className=' w-screen h-screen flex justify-center items-center'>
+    <div className=' w-screen h-screen flex justify-center items-center tapp-bg tapp-text'>
         <div className='w-full  xs:w-96 m-2.5 p-2.5 flex flex-col items-center justify-center '>
        <div className='text-3xl flex items-center justify-center my-8'>
         <span className='py-8'><BackButton /></span>

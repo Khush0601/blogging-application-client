@@ -1,4 +1,4 @@
-app.css :---:root{ 
+
     .dark{
         --white:#ffffff;
         --black:#000000;
@@ -15,7 +15,7 @@ app.css :---:root{
         --border:gray;
        
     }
-}
+
 
 .tapp-bg{
     background-color: var(--bg);

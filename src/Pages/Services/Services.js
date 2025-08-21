@@ -39,7 +39,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="tapp-bg min-h-screen">
       <AppHeader headerTitle={'Our Services'} />
 
       <div className="text-center px-4 sm:px-0 mt-16">

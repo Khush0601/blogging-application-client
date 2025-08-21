@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 const Write = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center justify-center h-screen  px-4">
+    <div className="flex flex-col items-center justify-center h-screen tapp-bg px-4">
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">Want to write your own blog?</h1>
         <p className="text-lg text-gray-600 mb-8">

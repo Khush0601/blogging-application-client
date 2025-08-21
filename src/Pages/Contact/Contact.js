@@ -24,7 +24,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-slate-200 min-h-screen">
+    <div className="tapp-bg min-h-screen">
       <AppHeader headerTitle="Contact Us" />
       <ToastContainer />
 

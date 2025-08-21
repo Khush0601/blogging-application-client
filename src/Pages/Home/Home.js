@@ -22,7 +22,7 @@ const Home = () => {
         learnmore={'Learn more ➡'}
     />
 
-    <div className="bg-slate-200 w-full py-6 px-4 xs:px-8">
+    <div className="tapp-bg tapp-text w-full py-6 px-4 xs:px-8">
       <div className="pb-2 border-b-2 border-gray-400 border-solid overflow-x-auto ">
         <div className='flex items-center flex-nowrap w-max'>
            {categories.map((category)=>{

@@ -41,7 +41,7 @@ const CreateBlog = () => {
   console.log('user',user)
   
   return (
-     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
+     <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow">
      
       <h2 className="text-2xl font-bold mb-6 text-center">
         <BackButton/>
