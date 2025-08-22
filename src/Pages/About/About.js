@@ -2,8 +2,34 @@ import React from 'react'
 import AppHeader from '../../Component/appHeader/AppHeader'
 import TestimonialCard from '../../Component/testimonialCards/TestimonialCard'
 import Footer from '../../Component/footer/Footer'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { ErrorToast } from '../../utils/toast'
+import Loading from '../../Component/loading/Loading'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const About = () => {
+  const [testimonialData,setTestimonialData]=useState([])
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(()=>{
+   const fetchTestimonialDetails=async()=>{
+     try {
+        const res = await axios.get("http://localhost:8000/bloggingApplication/api/v1/blog/testimonial/getTestmonial"); 
+        setTestimonialData(res.data); 
+        setLoading(false);
+      } catch (err) {
+        ErrorToast("Failed to load testimonials");
+        setLoading(false);
+      }
+   }
+   fetchTestimonialDetails()
+  },[])
+  console.log(testimonialData)
   return (
     <div>
         <AppHeader headerTitle={'About Us'}  />
@@ -27,8 +53,43 @@ const About = () => {
            </div>
        </div>
     </div>
-          <div className='text-5xl my-14 font-bold border-b-2 py-3 px-4 border-solid border-slate-200 text-center lg:text-left'>Top Authors</div>
-          <div className=''><TestimonialCard/></div>
+
+ <div className="px-4 lg:px-8">
+  <div className="text-3xl md:text-4xl lg:text-5xl my-10 font-bold border-b-2 py-3 border-slate-200 text-center lg:text-left">
+    Top Authors
+  </div>
+  {loading ? ( <Loading />) : (
+   <Swiper
+  modules={[Pagination, Autoplay]}
+  spaceBetween={20}
+  slidesPerView={1}
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 2000, disableOnInteraction: false }}
+  breakpoints={{
+    640: { slidesPerView: 1 }, 
+    768: { slidesPerView: 2 }, 
+    1024: { slidesPerView: 3 },
+    1280: { slidesPerView: 4 }, 
+  }}
+  className="pb-8"
+>
+  {testimonialData.map((data) => (
+    <SwiperSlide key={data?._id} className="h-auto">
+      <TestimonialCard
+        image={data?.image}
+        name={data?.name}
+        designation={data?.designation}
+        desc={data?.desc}
+      />
+
+    
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+  )}
+</div>
+
   </div>
   <Footer/>
     </div>

@@ -1,12 +1,12 @@
 import React from 'react'
 
-const TestimonialCard = () => {
+const TestimonialCard = ({image,name,designation,desc}) => {
   return (
-    <div className='w-64 h-64 bg-slate-50 rounded-lg flex flex-col items-center py-8'>
-       <div className='w-24 h-24 rounded-full  mb-3 flex items-center justify-center bg-green-300'>A</div>
-       <div className='mb-2 font-medium'>Arido David</div>
-       <div className='mb-2 '>Director of operations</div>
-       <div className='text-gray-500'>12 Article published</div>
+    <div className='w-64 h-64 bg-slate-50 rounded-lg flex flex-col items-center py-8 m-4'>
+       <img src={image} alt={name}  className="w-20 h-20 rounded-full object-cover mx-auto lg:mx-0"/>
+       <div className='mb-2 font-medium'>{name}</div>
+       <div className='mb-2 '>{designation}</div>
+       <div className='text-gray-500 text-center'>{desc}</div>
     </div>
   )
 }
