@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { ErrorToast } from '../../utils/toast'
 import Loading from '../loading/Loading'
+import { useEffect } from 'react'
+import { FaArrowRight } from 'react-icons/fa'
 // import { useNavigate } from 'react-router'
 
 const BlogFetcher = ({category}) => {
@@ -11,7 +13,8 @@ const BlogFetcher = ({category}) => {
   const [allBlogs,setAllBlogs]=useState([])
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  
+  const [latestBlogs,setLatestBlogs]=useState([])
+  const [latestBlogLoading,setLatestBlogLoading]=useState(true)
 
   React.useEffect(()=>{
   const getAllBlogs=async()=>{
@@ -53,8 +56,28 @@ const BlogFetcher = ({category}) => {
       setPage(prev => prev - 1);
     }
   };
+
+  useEffect(()=>{
+    const fetchLatestBlogs = async () => {
+      setLatestBlogLoading(true)
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/bloggingApplication/api/v1/blog/latestPost/getLatestPost"
+        );
+        setLatestBlogs(res.data.data);
+        setLatestBlogLoading(false);
+      } catch (err) {
+       ErrorToast("Failed to fetch latest blogs");
+        setLatestBlogLoading(false);
+      }
+    };
+
+    fetchLatestBlogs();
+  },[])
+
   console.log(category,'currentCategory')
   console.log(allBlogs)
+  console.log(latestBlogs)
   return (
     <div className='flex  flex-col sm:flex-row md:justify-between'>
       
@@ -87,14 +110,25 @@ const BlogFetcher = ({category}) => {
       </div>
       }
 
-    <div className="bg-pink-300 w-full sm:w-1/3 lg:w-1/4 mt-6 sm:mt-0 p-4 sm:rounded-lg shadow-md text-center break-words">
+   <div className="w-full sm:w-1/2 mx-4 md:w-1/3  mx-4 lg:w-128  mx-4 mt-6 sm:mt-0 p-4 sm:rounded-lg shadow-md break-words">
   <h2 className="text-lg font-semibold mb-4">Latest Post</h2>
   <div className="space-y-2">
-    <p>Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo uuuuuuuuuuuuuuuuuuuuu</p>
-    <p>Hiihhhhhhhhhhhhhhhhh nnnnnnnnnnnnnnnnnnnnnn</p>
-    <p>Kkkk nnnnnnnnnnnnnnn bbbbbbbbbb ffffffffffffk</p>
+    {latestBlogLoading ? (
+      <Loading />
+    ) : (
+      latestBlogs.map((data) => (
+        <div
+          key={data?._id}
+          className="flex items-center space-x-2 mb-4"
+        >
+          <FaArrowRight className="text-blue-500" />
+          <div className="font-medium">{data?.title}</div>
+        </div>
+      ))
+    )}
   </div>
 </div>
+
 
 
 
