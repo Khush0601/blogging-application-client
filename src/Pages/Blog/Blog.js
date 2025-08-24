@@ -34,7 +34,7 @@ console.log(blogs)
         <div className='flex flex-wrap my-10 px-2 xs:px-8 sm:px-12'>
           {
       loading ?<Loading/> :blogs.map((data,index)=>{
-        return <BlogCard blogBanner={data?.blogBanner} title={data?.title} />
+        return <BlogCard blogBanner={data?.blogBanner} title={data?.title} blogId={data?._id} />
       })
         }
         </div>
