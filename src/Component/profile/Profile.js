@@ -8,23 +8,13 @@ const Profile = () => {
   const [userDetails, setUserDetails] = useState([]);
 
 useEffect(() => {
-  if (!user?._id) return;
-
   const fetchUserDetails = async () => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.warn("No token found");
-        return;
-      }
-
       const res = await axios.get(
-        "http://localhost:8000/bloggingApplication/api/v1/user",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        `http://localhost:8000/bloggingApplication/api/v1/user`,{
+          userId:user._id
         }
+        
       );
 
       setUserDetails(res.data);
@@ -37,6 +27,8 @@ useEffect(() => {
   fetchUserDetails();
 }, [user?._id]);
  console.log(userDetails)
+
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 flex flex-col items-center text-center">

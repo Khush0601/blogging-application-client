@@ -76,10 +76,9 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
                <div onClick={()=>navigate('/blog')}>Blogs</div>
                <div onClick={()=>navigate('/signIn')}>Login</div>
                <div onClick={()=>navigate('/dashboard')}>Dashboard</div>
-               <div className="cursor-pointer hover:scale-110 transition">
-                <FaMoon size={28} className="text-white-700" />
+              <div  className="flex cursor-pointer px-2 py-2 hover:scale-110 transition"  onClick={handleTheme}>
+               <FaMoon size={28} className="text-white" />
                </div>
-
            </div>
         </div>
       }
