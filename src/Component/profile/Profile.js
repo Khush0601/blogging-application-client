@@ -27,6 +27,7 @@ useEffect(() => {
   fetchUserDetails();
 }, [user?._id]);
  console.log(userDetails)
+ 
 
 
   return (
