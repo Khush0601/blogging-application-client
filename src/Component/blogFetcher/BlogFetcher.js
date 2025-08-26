@@ -119,9 +119,9 @@ const BlogFetcher = ({category}) => {
       latestBlogs.map((data) => (
         <div
           key={data?._id}
-          className="flex items-center space-x-2 mb-4"
+          className="flex items-start space-x-2 mb-4"
         >
-          <FaArrowRight className="text-blue-500" />
+          <FaArrowRight className="text-blue-500 flex-shrink-0" />
           <div className="font-medium">{data?.title}</div>
         </div>
       ))

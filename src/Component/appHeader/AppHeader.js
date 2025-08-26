@@ -20,7 +20,7 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
  }
   return (
    
-    <div className="w-full px-2 bg-black h-[460px] xs: h-[400px] flex flex-col  items-center">
+    <div className="w-full px-2 bg-black  flex flex-col  items-center">
      <div className="text-white flex  mt-2 w-full items-center justify-between gap-16 py-2  md:px-4 ">
        <div className="mx-1 flex items-center justify-center cursor-pointer">
        <img src={logo} alt="app logo" className="w-12 h-12 object-contain" />

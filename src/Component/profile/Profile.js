@@ -2,41 +2,47 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../App';
 import axios from 'axios';
 import { ErrorToast } from '../../utils/toast';
+import Loading from '../loading/Loading';
 
 const Profile = () => {
   const { user } = useContext(UserContext);
   const [userDetails, setUserDetails] = useState([]);
-
+  const [loading,setLoading]=useState(true)
 useEffect(() => {
-  const fetchUserDetails = async () => {
+   const fetchUserDetails = async () => {
     try {
+      setLoading(true)
       const res = await axios.get(
-        `http://localhost:8000/bloggingApplication/api/v1/user`,{
-          userId:user._id
-        }
-        
+        `http://localhost:8000/bloggingApplication/api/v1/user/${user._id}`
       );
-
+      
       setUserDetails(res.data);
+      
     } catch (err) {
+
       console.error("Error fetching user details:", err);
-      ErrorToast(err?.response?.data?.message)
+      ErrorToast(err?.response?.data?.message);
+    }
+     finally {
+      setLoading(false); 
     }
   };
 
   fetchUserDetails();
 }, [user?._id]);
+
+
  console.log(userDetails)
  
 
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 flex flex-col items-center text-center">
+     {loading? <Loading/> : <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 flex flex-col items-center text-center">
         
        
         <img
-          src={user?.picture || 'https://i.pravatar.cc/150?img=3'}
+          src={user?.picture ||user?.name?.charAt(0)}
           alt="User Avatar"
           className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 mb-4"
         />
@@ -67,7 +73,7 @@ useEffect(() => {
         </div>
 
         
-      </div>
+      </div>}
     </div>
   );
 };

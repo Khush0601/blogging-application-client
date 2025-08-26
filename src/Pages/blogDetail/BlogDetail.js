@@ -133,7 +133,7 @@ setLoading(false);
  
      console.log(comments,'comments')
   return (
-   <div className='bg-slate-100 w-full h-full'>
+   <div className='tapp-bg tapp-text  w-full h-full'>
      <div className='flex justify-between px-10 py-4 items-center'>
       <div >
          <img src={logo} alt="app logo" className="w-12 h-12 object-contain" />
