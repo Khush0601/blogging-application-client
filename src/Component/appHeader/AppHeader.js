@@ -56,7 +56,7 @@ const {user,setUser}=useContext(UserContext)
   {user ? (
    
     <div
-      className="hidden md:flex cursor-pointer text-base font-medium bg-red-600 rounded-lg text-white px-6 py-2 mx-2 items-center justify-center"
+      className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 mx-2 items-center justify-center"
       onClick={handleLogout}
     >
       Logout
@@ -84,7 +84,7 @@ const {user,setUser}=useContext(UserContext)
         </div>
  </div>
 
-      <div className="text-white px-2 my-4  flex flex-col justify-center items-center xs:px-20 my-12 md:px-32 my-16 ">
+      <div className="text-white px-2   mb-6 flex flex-col justify-center items-center xs:px-20 md:mb-32 md:mt-20 md:mb-32">
         <div className='text-3xl text-center font-medium md:text-4xl mt-8'>{headerTitle}</div>
         <div className='text-center my-4 text-base font-base md:text-lg my-12  px-16 lg:px-32'>
           {headerDesc}
@@ -104,7 +104,9 @@ const {user,setUser}=useContext(UserContext)
                <div onClick={()=>navigate('/services')}>Services</div>
                <div onClick={()=>navigate('/contact')}>Contact</div>
                <div onClick={()=>navigate('/blog')}>Blogs</div>
-               <div onClick={()=>navigate('/signIn')}>Login</div>
+               <div onClick={user ? handleLogout : () => navigate('/signIn')}>
+               {user ? "Logout" : "Login"}
+               </div>
                <div onClick={()=>navigate('/dashboard')}>Dashboard</div>
               <div  className="flex cursor-pointer px-2 py-2 hover:scale-110 transition"  onClick={handleTheme}>
                <FaMoon size={28} className="text-white" />
