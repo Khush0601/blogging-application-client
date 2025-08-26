@@ -4,19 +4,31 @@ import { useLocation, useNavigate } from 'react-router';
 import { RxCross2 } from "react-icons/rx";
 import logo from '../../Assets/blogging-icon-27.jpg'
 import { FaMoon } from 'react-icons/fa';
-import { ThemeContext } from '../../App';
+import { ThemeContext, UserContext } from '../../App';
+import { SuccessToast } from '../../utils/toast';
 
  
 
 const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
   const [isOpen,setIsOpen]=useState(false)
   const { isLight, setIsLight } = useContext(ThemeContext)
-
+const {user,setUser}=useContext(UserContext)
  const navigate=useNavigate()
  const location=useLocation()
  const isActive=(path)=>location.pathname===path;
+
  const handleTheme=()=>{
   setIsLight((prev)=>!prev)
+ }
+
+
+ const handleLogout=()=>{
+  localStorage.removeItem("token");
+  setUser(null);
+  SuccessToast("Logout successfully");
+  setTimeout(() => {
+    navigate("/signIn");
+  }, 2000);
  }
   return (
    
@@ -39,10 +51,28 @@ const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
            ${isActive('/blog')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`}  onClick={()=>navigate('/blog')}>Blogs</div>
           <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
           ${isActive('/contact')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`}  onClick={()=>navigate('/contact')}>Contact</div>
-          <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 mx-2 items-center justify-center" 
-          onClick={()=>navigate('/signIn')}>
-          Login
-        </div>
+
+         <div>
+  {user ? (
+   
+    <div
+      className="hidden md:flex cursor-pointer text-base font-medium bg-red-600 rounded-lg text-white px-6 py-2 mx-2 items-center justify-center"
+      onClick={handleLogout}
+    >
+      Logout
+    </div>
+  ) : (
+     <div
+      className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 mx-2 items-center justify-center"
+      onClick={() => navigate("/signIn")}
+    >
+      Login
+    </div>
+  )}
+</div>
+
+
+
          <div className="hidden md:flex cursor-pointer text-base font-medium bg-amber-600 rounded-lg text-white px-6 py-2 ml-2 items-center justify-center " 
          onClick={()=>navigate('/dashboard/userBlog')}>
           Dashboard
