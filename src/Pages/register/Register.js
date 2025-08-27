@@ -98,6 +98,7 @@ const Register = () => {
     }
     return true
   }
+  
   const onSignUp= async(e)=>{
     e.preventDefault()
    try{

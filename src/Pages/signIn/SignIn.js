@@ -48,8 +48,12 @@ useEffect(()=>{
       password: signInDetails.password,
     });
     // console.log('Login successful:', response.data);
-    SuccessToast('Login successful!');
     setUser( response.data)
+    SuccessToast('Login successful!');
+    setTimeout(()=>{
+    navigate('/home')
+   },2000)
+    // navigate('/home')
    } 
    catch (error) {
     

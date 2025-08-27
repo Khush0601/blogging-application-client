@@ -121,7 +121,7 @@ const BlogFetcher = ({category}) => {
           key={data?._id}
           className="flex items-start space-x-2 mb-4"
         >
-          <FaArrowRight className="text-blue-500 flex-shrink-0" />
+          <span className='mt-1'><FaArrowRight className="text-blue-500 flex-shrink-0" /></span>
           <div className="font-medium">{data?.title}</div>
         </div>
       ))
