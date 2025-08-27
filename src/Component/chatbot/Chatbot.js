@@ -4,6 +4,7 @@ import { faqData } from "./ChatbotData";
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [open, setOpen] = useState(false);
+  
   const handleQuestionClick = (faq) => {
     setMessages((prev) => [
       ...prev,

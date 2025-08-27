@@ -8,6 +8,8 @@ const Profile = () => {
   const { user } = useContext(UserContext);
   const [userDetails, setUserDetails] = useState([]);
   const [loading,setLoading]=useState(true)
+  const [loadedImage, setLoadedImage] = useState(null);
+  const [imageloading, setImageLoading] = useState(true);
 useEffect(() => {
    const fetchUserDetails = async () => {
     try {
@@ -34,18 +36,38 @@ useEffect(() => {
 
  console.log(userDetails)
  
+ useEffect(() => {
+    const img = new Image();
+    img.src = user?.picture; // your image URL
 
+    img.onload = () => {
+      setLoadedImage(img.src);
+      setImageLoading(false);
+    };
+
+    img.onerror = () => {
+      console.error("Image failed to load");
+      setImageLoading(false);
+    };
+  }, [user?.picture]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
      {loading? <Loading/> : <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 flex flex-col items-center text-center">
         
+       {loadedImage &&  <img
+          src={loadedImage}
+          alt={user?.name}
+          className="w-32 h-32 flex  rounded-full object-cover border-4 border-blue-500 mb-4"
+        />}
+
+         {!loadedImage &&  <img
+          src={'/logo192.png'}
+          alt={user?.name}
+          className="w-32 h-32 flex  rounded-full object-cover border-4 border-blue-500 mb-4"
+        />}
        
-        <img
-          src={user?.picture ||user?.name?.charAt(0)}
-          alt="User Avatar"
-          className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 mb-4"
-        />
+       
 
       
         <h2 className="text-2xl font-bold text-gray-800 mb-1">
