@@ -26,15 +26,19 @@ const AppJourney = ({onjouneyCompleted}) => {
     <div className='w-screen h-screen  border-2 border-solid  flex justify-center '>
        <div className=' flex  flex-col p-5 items-center justify-center'>
        <div className='my-4'>
-       {jouneyStep===0 && <SplashScreen splashImage={splashImage1} splashtitle={'Bus Tracking'}
-        splashContent={'This feature that provides information about'} splashSubContent={'its exact location and subsequent moments' }
+       {jouneyStep===0 && <SplashScreen splashImage={splashImage1} splashtitle={'Blogging App'}
+        splashContent={'Turn your words into powerful stories.'} splashSubContent={'Write, share, and explore blogs that matter to you.' }
          
         />}
-        {jouneyStep===1 && <SplashScreen splashImage={splashImage2} splashtitle={'Library'} 
-          splashContent={'Reservation are available at any time and'} splashSubContent={'it enhances your knowledge of the subject.'}
+        {jouneyStep===1 && <SplashScreen splashImage={splashImage2} 
+        splashtitle = {'Join the Community'}
+        splashContent = {'Engage in meaningful discussions and'}
+        splashSubContent = {'connect with like-minded people.'}
         />}
-        {jouneyStep===2 && <SplashScreen splashImage={splashImage3} splashtitle={'Digital Diary'}
-          splashContent={'A simple solution for digitilizing your student'} splashSubContent={'academics like homework and exam result.'}
+        {jouneyStep===2 && <SplashScreen splashImage={splashImage3} 
+        splashtitle = {'Your Space'}
+        splashContent = {'Track your blogs, drafts, and saved posts'}
+        splashSubContent = {'all in one place.'}
         />}
      
        </div>
