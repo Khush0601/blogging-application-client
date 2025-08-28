@@ -38,7 +38,7 @@ useEffect(() => {
  
  useEffect(() => {
     const img = new Image();
-    img.src = user?.picture; // your image URL
+    img.src = user?.picture; 
 
     img.onload = () => {
       setLoadedImage(img.src);
@@ -63,7 +63,7 @@ useEffect(() => {
         />}
 
          {!loadedImage &&  <img
-          src={'/logo192.png'}
+          src={'/profile Img.png'}
           alt={user?.name}
           className="w-32 h-32 flex  rounded-full object-cover border-4 border-blue-500 mb-4"
         />}
