@@ -36,6 +36,7 @@ const BlogDetail = () => {
       }
       catch(e){
         console.log(e)
+        ErrorToast(e?.message ||'error while loading blogdetails')
       }
       finally {
   setLoading(false);
@@ -52,7 +53,7 @@ const BlogDetail = () => {
       
     } catch (error) {
       console.error("Error fetching comments:", error);
-      ErrorToast(error)
+      ErrorToast(error?.message ||"Error fetching comments" )
     } 
    
   };
@@ -85,9 +86,9 @@ setCommentShow(!commentshow)
   } catch (error) {
    
     if (error.response) {
-      alert(error.response.data.message || 'Failed to like the post');
+     ErrorToast(error.response.data.message || 'Failed to like the post')
     } else {
-      alert('Something went wrong while liking the post.');
+    ErrorToast('Something went wrong while liking the post.')
     }
     console.error('Error liking the post:', error);
   }
