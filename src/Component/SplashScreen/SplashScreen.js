@@ -10,6 +10,8 @@ const SplashScreen = ({splashImage,splashtitle,splashContent,splashSubContent}) 
      <div className='text-center py-4 text-[#3c317f] font-semibold text-xl'>{splashtitle}</div>
      <div className='py-4' >
      <div className='text-base text-center'>{splashContent}
+
+     
       </div>
       <div className='text-base text-center'>{splashSubContent}</div>
      </div>
