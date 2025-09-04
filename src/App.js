@@ -13,7 +13,7 @@ export const ThemeContext = createContext(null);
 const App = () => {
    const [user,setUser]=useState(null)
   const [isUserCame,setIsUserCame]=useState(false)
-  const [isLight, setIsLight] = useState(true);
+  const [isLight, setIsLight] = useState(localStorage.getItem('isLight') ==='true');
 
   useEffect(()=>{
     const userCame=localStorage.getItem('isUserCame')

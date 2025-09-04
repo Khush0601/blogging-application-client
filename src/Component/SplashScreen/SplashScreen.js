@@ -1,8 +1,8 @@
 import React from 'react'
-import schoolImg from '../../Assets/schoolpng2.svg'
+
 const SplashScreen = ({splashImage,splashtitle,splashContent,splashSubContent}) => {
   return (
-    <div className=' flex flex-col justify-center grid grid-cols-1 md:grid-cols-2 flex items-center'>
+    <div className='flex flex-col justify-center grid grid-cols-1 md:grid-cols-2  items-center'>
       <div className='flex justify-content-items-center p-4 '>
       <img src={splashImage} alt={splashtitle} className='w-80 h-96 md:w-96  object-contain'/>
       </div>

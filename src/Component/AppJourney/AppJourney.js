@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import SplashScreen from '../SplashScreen/SplashScreen'
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import splashImage1 from '../../Assets/schoolpng2.svg'
-import splashImage2 from '../../Assets/schoolpng3.svg'
-import splashImage3 from '../../Assets/schoolpng4.svg'
-import { Button } from '@mui/material';
+import splashImage1 from '../../Assets/splashscreen1.svg'
+import splashImage2 from '../../Assets/spalshscreen_2.svg'
+import splashImage3 from '../../Assets/splashscreen_3.svg'
+
 const AppJourney = ({onjouneyCompleted}) => {
     const[jouneyStep,setJourneyStep]=useState(0)
     const handleNext=()=>{

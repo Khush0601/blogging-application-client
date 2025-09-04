@@ -18,7 +18,9 @@ const {user,setUser}=useContext(UserContext)
  const isActive=(path)=>location.pathname===path;
 
  const handleTheme=()=>{
+   localStorage.setItem('isLight',!isLight)
   setIsLight((prev)=>!prev)
+ 
  }
 
 
