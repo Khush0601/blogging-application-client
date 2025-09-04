@@ -47,7 +47,8 @@ useEffect(()=>{
       email: signInDetails.email,
       password: signInDetails.password,
     });
-    // console.log('Login successful:', response.data);
+    console.log('Login successful:', response.data);
+    localStorage.setItem("token", response.data.token);
     setUser( response.data)
     SuccessToast('Login successful!');
     setTimeout(()=>{

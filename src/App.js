@@ -35,17 +35,17 @@ const App = () => {
   
  React.useEffect(() => {
   const token = localStorage.getItem("token");
-
   const autoLogin = async () => {
+
     try {
       const userDetails = await axios.get("http://localhost:8000/bloggingApplication/api/v1/user/autoLogin", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      console.log(userDetails)
       
-      setUser(userDetails.data.user);
+      setUser(userDetails.data.restData);
     } catch (e) {
       console.log("Auto-login failed:", e.message);
       localStorage.removeItem("token");
