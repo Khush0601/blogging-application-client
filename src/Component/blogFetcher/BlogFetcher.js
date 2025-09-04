@@ -110,6 +110,8 @@ const BlogFetcher = ({category}) => {
       </div>
       }
 
+      
+
    <div className="col-span-1 sm:col-span-1 mx-4 mt-6 sm:mt-0 p-4 sm:rounded-lg break-words">
   <h2 className="text-lg font-semibold mb-4">Latest Post</h2>
   <div className="space-y-2">
