@@ -24,9 +24,8 @@ const Dashboard = () => {
 
       
       <div className="flex flex-1 pt-[72px]">
-         <div className="hidden md:block w-64 tapp-bg shadow fixed top-[72px] bottom-0 left-0 z-40">
-          <SideBar />
-        </div>
+        <SideBar />
+        
 
        
         <div className="flex-1 ml-0 md:ml-64 overflow-y-auto p-4 tapp-bg tapp-text h-[calc(100vh-72px)]">

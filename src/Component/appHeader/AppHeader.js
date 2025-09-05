@@ -88,9 +88,9 @@ const {user,setUser}=useContext(UserContext)
         </div>
  </div>
 
-      <div className="text-white px-2   mb-6 flex flex-col justify-center items-center xs:px-20 md:mb-32 md:mt-20 md:mb-32">
+      <div className="text-white px-2  mb-6 flex flex-col justify-center items-center xs:px-20 md:mb-32 md:mt-20 md:mb-32">
         <div className='text-3xl text-center font-medium md:text-4xl mt-8'>{headerTitle}</div>
-        <div className='text-center my-4 text-base font-base md:text-lg my-12  px-16 lg:px-32'>
+        <div className='text-center my-4 text-base font-base md:text-lg my-12   lg:px-32'>
           {headerDesc}
         </div>
          <div className='text-center  text-lg font-base' >{learnmore}</div>

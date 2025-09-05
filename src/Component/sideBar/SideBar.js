@@ -14,8 +14,8 @@ const SideBar = () => {
 
   return (
     <>
-      {/* Desktop view */}
-      <div className="hidden md:block tapp-bg shadow w-64 min-h-screen p-4">
+     
+      <div className="hidden md:block tapp-bg shadow w-64 min-h-screen p-4 tapp-bg  fixed top-[72px] bottom-0 left-0 z-40">
         <nav className="flex flex-col gap-2">
           <Link to={`/dashboard/userBlog`} className={linkStyle('/dashboard/userBlog')}>
           Blog
@@ -28,9 +28,8 @@ const SideBar = () => {
           </Link>
         </nav>
       </div>
-
-      {/* Mobile view*/}
-      <div className="md:hidden fixed bottom-0 left-0 w-full tapp-bg tapp-text border-t flex justify-around px-4 py-2 shadow-md">
+   
+           <div className="md:hidden fixed bottom-0 left-0 w-full tapp-bg tapp-text border-t flex justify-around px-4 py-2 shadow-md z-40">
         <Link to="/dashboard/userBlog" className={linkStyle('/dashboard/userBlog')}>
           Blog
         </Link>
