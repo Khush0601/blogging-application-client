@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { RxCross2 } from "react-icons/rx";
 import logo from '../../Assets/blogging-icon-27.jpg'
-import { FaMoon } from 'react-icons/fa';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import { ThemeContext, UserContext } from '../../App';
 import { SuccessToast } from '../../utils/toast';
-
+import { IoMenu } from "react-icons/io5"
  
 
 const AppHeader = ({headerTitle,headerDesc,learnmore}) => {
@@ -40,7 +40,9 @@ const {user,setUser}=useContext(UserContext)
        <img src={logo} alt="app logo" className="w-12 h-12 object-contain" />
      </div>
 
-        <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden" onClick={()=>setIsOpen(true)}>menu</div>
+        <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden" onClick={()=>setIsOpen(true)}>
+         <IoMenu className="text-amber-600 text-4xl cursor-pointer"/>
+        </div>
          <div className="hidden md:flex cursor-pointer mx-2 lg:mx-16 xl:mx-24  items-center justify-center">
           <div className={`text-lg font-medium mr-4 pb-2 border-b-2  
           ${isActive('/home')? 'border-amber-600  font-semibold': 'border-transparent text-lg'} lg:mr-7`} 
@@ -81,7 +83,7 @@ const {user,setUser}=useContext(UserContext)
         </div>
 
         <div  className="hidden md:flex cursor-pointer px-4 py-2 ml-2 hover:scale-110 transition"  onClick={handleTheme}>
-          <FaMoon size={28} className="text-white-700" />
+         {isLight ? <FaSun size={28} className="text-amber-400" /> : <FaMoon size={28} className="text-gray-700" />}
         </div>
         </div>
  </div>
@@ -95,9 +97,9 @@ const {user,setUser}=useContext(UserContext)
       </div>
       {
         isOpen && 
-        <div className="fixed top-0 right-0 h-full w-64 bg-gray-500 text-white z-50 p-4 shadow-lg transition-all duration-300">
+        <div className="fixed top-0 right-0 h-full w-56 bg-gray-400 text-white z-50 p-4 shadow-lg transition-all duration-300">
           <div className="flex justify-end cursor-pointer">
-            <button onClick={() => setIsOpen(false)} ><RxCross2/></button>
+            <button onClick={() => setIsOpen(false)} className="text-amber-600 text-4xl" ><RxCross2/></button>
             
           </div>
            <div className="mt-4 space-y-4">
@@ -111,7 +113,7 @@ const {user,setUser}=useContext(UserContext)
                </div>
                <div onClick={()=>navigate('/dashboard')}>Dashboard</div>
               <div  className="flex cursor-pointer px-2 py-2 hover:scale-110 transition"  onClick={handleTheme}>
-               <FaMoon size={28} className="text-white" />
+               {isLight ? <FaSun size={28} className="text-amber-400" /> : <FaMoon size={28} className="text-gray-700" />}
                </div>
            </div>
         </div>

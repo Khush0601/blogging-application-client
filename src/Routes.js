@@ -22,29 +22,28 @@ const EditBlog = lazy(() => import("./Component/editBlog/EditBlog"));
 const AppRoutes = () => {
   return (
     <>
-    <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route index element={<Navigate to="/home"/>}/>
-          <Route path="/home" element={<Home/>}/>
-          <Route path='/signUp' element={<Register/>}/>
-          <Route path='/signIn' element={<SignIn/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/services' element={<Services/>}/>
-          <Route path='/blog' element={<Blog/>}/>
-          <Route path='/blogDetail/:id' element={<BlogDetail/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-           <Route path='/createBlog' element={<PrivateRoutes><CreateBlog/></PrivateRoutes>}/>
-          <Route path="/editBlog/:blogId" element={<EditBlog/>} />
+    
+      <Routes>
+         <Route index element={<Navigate to="/home"/>}/>
+         <Route path="/home" element={<Home />}/>
+         <Route path="/signUp" element={<Suspense fallback={<Loading />}><Register /></Suspense>} />
+         <Route path="/signIn" element={<Suspense fallback={<Loading />}><SignIn /></Suspense>} />
+         <Route path="/about" element={<Suspense fallback={<Loading />}><About /></Suspense>} />
+         <Route path="/services" element={<Suspense fallback={<Loading />}><Services /></Suspense>} />
+         <Route path="/blog" element={<Suspense fallback={<Loading />}><Blog /></Suspense>} />
+         <Route path="/blogDetail/:id" element={<Suspense fallback={<Loading />}><BlogDetail /></Suspense>} />
+         <Route path="/contact" element={<Suspense fallback={<Loading />}><Contact /></Suspense>} />
+         <Route path="/createBlog" element={<Suspense fallback={<Loading />}><PrivateRoutes><CreateBlog /></PrivateRoutes></Suspense>} />
+         <Route path="/editBlog/:blogId" element={<Suspense fallback={<Loading />}><EditBlog /></Suspense>} />
           
-           <Route path="/dashboard" element={<PrivateRoutes><Dashboard/></PrivateRoutes>}>
-            <Route index element={<UserBlog />} />
-            <Route path="userBlog" element={<UserBlog />} />
-            <Route path="write" element={<Write />} />
-            <Route path="profile" element={<Profile />} />
-            
-           </Route>
-        </Routes>
-     </Suspense>
+         <Route path="/dashboard" element={<Suspense fallback={<Loading />}><PrivateRoutes><Dashboard /></PrivateRoutes></Suspense>} >
+          <Route index element={<Suspense fallback={<Loading />}><UserBlog /></Suspense>} />
+          <Route path="userBlog" element={<Suspense fallback={<Loading />}><UserBlog /></Suspense>} />
+          <Route path="write" element={<Suspense fallback={<Loading />}><Write /></Suspense>} />
+          <Route path="profile" element={<Suspense fallback={<Loading />}><Profile /></Suspense>} />
+         </Route>
+      </Routes>
+     
     </>
   )
 }
