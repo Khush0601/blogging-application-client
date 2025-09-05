@@ -43,7 +43,7 @@ const App = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(userDetails)
+      
       
       setUser(userDetails.data.restData);
     } catch (e) {

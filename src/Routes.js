@@ -1,24 +1,28 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Navigate, Route,  Routes } from 'react-router'
-import Home from './Pages/Home/Home'
-import Register from './Pages/register/Register'
-import SignIn from './Pages/signIn/SignIn'
-import About from './Pages/About/About'
-import Services from './Pages/Services/Services'
-import Blog from './Pages/Blog/Blog'
-import Contact from './Pages/Contact/Contact'
-import BlogDetail from './Pages/blogDetail/BlogDetail'
 
-import Dashboard from './Pages/Dashboard/Dashboard'
-import UserBlog from './Component/userBlog/UserBlog'
-import Write from './Component/write/Write'
-import Profile from './Component/profile/Profile'
-import CreateBlog from './Component/createBlog/CreateBlog'
-import EditBlog from './Component/editBlog/EditBlog'
 import PrivateRoutes from './Component/privateRoute/PrivateRoute'
+import Loading from './Component/loading/Loading';
+
+const Home = lazy(() => import("./Pages/Home/Home"));
+const Register = lazy(() => import("./Pages/register/Register"));
+const SignIn = lazy(() => import("./Pages/signIn/SignIn"));
+const About = lazy(() => import("./Pages/About/About"));
+const Services = lazy(() => import("./Pages/Services/Services"));
+const Blog = lazy(() => import("./Pages/Blog/Blog"));
+const Contact = lazy(() => import("./Pages/Contact/Contact"));
+const BlogDetail = lazy(() => import("./Pages/blogDetail/BlogDetail"));
+const Dashboard = lazy(() => import("./Pages/Dashboard/Dashboard"));
+const UserBlog = lazy(() => import("./Component/userBlog/UserBlog"));
+const Write = lazy(() => import("./Component/write/Write"));
+const Profile = lazy(() => import("./Component/profile/Profile"));
+const CreateBlog = lazy(() => import("./Component/createBlog/CreateBlog"));
+const EditBlog = lazy(() => import("./Component/editBlog/EditBlog"));
+
 const AppRoutes = () => {
   return (
     <>
+    <Suspense fallback={<Loading />}>
         <Routes>
           <Route index element={<Navigate to="/home"/>}/>
           <Route path="/home" element={<Home/>}/>
@@ -40,6 +44,7 @@ const AppRoutes = () => {
             
            </Route>
         </Routes>
+     </Suspense>
     </>
   )
 }
