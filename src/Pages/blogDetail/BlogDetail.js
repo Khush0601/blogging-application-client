@@ -146,7 +146,20 @@ setLoading(false);
      </div>
       <div className=''>Write</div>
       </div>
-      <img className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center ' src={user?.picture} alt={user?.name}/>
+   {user && (
+  user.picture ? (
+    <img
+      className="w-14 h-14 rounded-full object-cover"
+      src={user.picture}
+      alt={user?.name}
+    />
+  ) : (
+    <div className="w-14 h-14 rounded-full bg-red-100 flex justify-center items-center text-lg font-bold text-gray-700">
+      {user?.name?.[0]?.toUpperCase()}
+    </div>
+  )
+)}
+
       </div>
      </div>
      <BackButton/>
