@@ -115,6 +115,10 @@ const res = await axios.post("http://localhost:8000/bloggingApplication/api/v1/b
         }
       );
       console.log(res.data,'comments')
+      setComments((p)=>{
+        
+       return [res.data,...p]
+      })
       SuccessToast('comment posted successfully')
       setMessage("");
       setShowForm(false);
@@ -170,7 +174,7 @@ setLoading(false);
       <div className=' text-xl font-medium py-2 xs:text-2xl xs:font-semibold xs:py-4 sm:text-3xl md:text-4xl md:font-bold'>{blogDetails?.title}</div>
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center'>
         <div className=' flex items-center py-2 sm:py-4 '>
-           <div className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center '>K</div>
+           <div className='w-14 h-14 rounded-full bg-red-100 flex justify-center items-center '>{blogDetails?.userId?.name[0]}</div>
            <div className='text-lg font-normal px-2 sm:text-xl sm:font-medium '>{blogDetails?.userId?.name}</div>
         </div>
         <div className='px-2 sm:px-0'>{blogDetails?.createdAt?.slice(0, 10)}</div>
