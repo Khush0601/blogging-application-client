@@ -194,7 +194,7 @@ setLoading(false);
            
         </div>
         
-        <div>share</div>
+        {/* <div>share</div> */}
       </div>
    {commentshow &&
     <div className="mt-4 border border-gray-300 rounded-lg p-3 bg-white shadow-sm">
@@ -233,11 +233,11 @@ setLoading(false);
               placeholder="Write your comment..."
               className="w-full border border-gray-300 rounded px-3 py-1 text-sm"
             />
-            <button className="mt-2 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600" onClick={handlePost}>Post</button>
+            <button className="mt-2 px-3 py-1 bg-amber-500 text-white text-sm rounded hover:bg-amber-600" onClick={handlePost}>Post</button>
           </div>
         </div>
       )}
-      {/* comments section will be visible  */}
+    
       {comments.length === 0 ? (
         <p className="text-gray-500 text-sm">No comments yet</p>
       ) : (

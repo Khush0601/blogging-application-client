@@ -4,6 +4,7 @@ import axios from 'axios'
 import { ErrorToast } from '../../utils/toast'
 import Loading from '../../Component/loading/Loading'
 import BlogCard from '../../Component/blogCard/BlogCard'
+import Footer from '../../Component/footer/Footer'
 
 const Blog = () => {
   const [blogs,setBlogs]=useState([])
@@ -68,7 +69,8 @@ console.log(blogs)
             Next
           </button>
           </div>
-        
+         
+         <Footer/>
         
     </div>
   )
