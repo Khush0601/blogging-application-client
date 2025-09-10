@@ -6,10 +6,11 @@ import { ErrorToast } from '../../utils/toast'
 import Loading from '../loading/Loading'
 import { useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
+import { useNavigate } from 'react-router'
 // import { useNavigate } from 'react-router'
 
 const BlogFetcher = ({category}) => {
-//   const navigate=useNavigate()
+  const navigate=useNavigate()
   const [allBlogs,setAllBlogs]=useState([])
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -77,7 +78,7 @@ const BlogFetcher = ({category}) => {
 
   console.log(category,'currentCategory')
   console.log(allBlogs)
-  console.log(latestBlogs)
+  console.log(latestBlogs,"latest ")
   return (
     <div className='grid grid-cols-1  sm:grid-cols-5 '>
       
@@ -124,7 +125,7 @@ const BlogFetcher = ({category}) => {
           className="flex items-start space-x-2 mb-4"
         >
           <span className='mt-1'><FaArrowRight className="text-blue-500 flex-shrink-0" /></span>
-          <div className="font-medium">{data?.title}</div>
+          <div className="font-medium hover:text-blue-600 hover:underline transition-colors duration-300" onClick={() => navigate(`/blogDetail/${data?._id}`)}>{data?.title}</div>
         </div>
       ))
     )}
