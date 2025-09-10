@@ -41,7 +41,7 @@ const {user,setUser}=useContext(UserContext)
     <div className="w-full px-2 bg-black  flex flex-col  items-center">
      <div className="text-white flex  mt-2 w-full items-center justify-between gap-16 py-2  md:px-4 ">
        <div className="mx-1 flex items-center justify-center cursor-pointer">
-       <img src={logo} alt="app logo" className="w-12 h-12 object-contain" />
+       <img src={logo} alt="app logo" className="w-12 h-12 object-contain" onClick={()=>navigate('/home')} />
      </div>
 
         <div className="text-white  mx-2 cursor-pointer flex justify-end md:hidden" onClick={()=>setIsOpen(true)}>

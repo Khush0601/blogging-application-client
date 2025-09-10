@@ -17,7 +17,7 @@ const App = () => {
 
   useEffect(()=>{
     const userCame=localStorage.getItem('isUserCame')
-    console.log(userCame)
+   
     if(userCame===null ){
      setIsUserCame(true)
     }
@@ -30,7 +30,7 @@ const App = () => {
     localStorage.setItem('isUserCame','came')
     setIsUserCame(false)
    }
-  console.log(isUserCame,'isUse')
+  
    
   
  React.useEffect(() => {
@@ -57,8 +57,7 @@ const App = () => {
   }
 }, []);
 
-console.log(isLight)
-console.log(user)
+
   return (
    <FireBaseProvider >
    <UserContext.Provider value={{user:user,setUser:setUser}}>

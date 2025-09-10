@@ -10,6 +10,7 @@ const Profile = () => {
   const [loading,setLoading]=useState(true)
   const [loadedImage, setLoadedImage] = useState(null);
   const [imageloading, setImageLoading] = useState(true);
+
 useEffect(() => {
    const fetchUserDetails = async () => {
     try {
@@ -22,7 +23,7 @@ useEffect(() => {
       
     } catch (err) {
 
-      console.error("Error fetching user details:", err);
+     
       ErrorToast(err?.response?.data?.message);
     }
      finally {
@@ -34,7 +35,7 @@ useEffect(() => {
 }, [user?._id]);
 
 
- console.log(userDetails)
+
  
  useEffect(() => {
     const img = new Image();
@@ -46,11 +47,11 @@ useEffect(() => {
     };
 
     img.onerror = () => {
-      console.error("Image failed to load");
+     
       setImageLoading(false);
     };
   }, [user?.picture]);
-  console.log(user)
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
