@@ -29,7 +29,7 @@ const About = () => {
    }
    fetchTestimonialDetails()
   },[])
-  console.log(testimonialData)
+  
   return (
     <div>
         <AppHeader headerTitle={'About Us'}  />

@@ -64,12 +64,12 @@ const Register = () => {
         email:signUpForm.email,
         otp:otp,
        })
-       console.log(verify)
+       
        setVerified(true)
        SuccessToast('email veified')
      }
      catch(err){
-      console.log(err)
+     
       setVerified(false)
       ErrorToast(err?.response?.data?.message)
      }
@@ -155,9 +155,7 @@ const Register = () => {
   ErrorToast(e.message)
   }
   }
-  console.log(signUpForm)
-  console.log(user,'user')
-  console.log(otp)
+  
 
   
   return (

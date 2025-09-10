@@ -35,7 +35,7 @@ const BlogDetail = () => {
       setBlogDetails(result)
       }
       catch(e){
-        console.log(e)
+       
         ErrorToast(e?.message ||'error while loading blogdetails')
       }
       finally {
@@ -52,7 +52,7 @@ const BlogDetail = () => {
       setComments(response.data);
       
     } catch (error) {
-      console.error("Error fetching comments:", error);
+      
       ErrorToast(error?.message ||"Error fetching comments" )
     } 
    
@@ -90,9 +90,10 @@ setCommentShow(!commentshow)
     } else {
     ErrorToast('Something went wrong while liking the post.')
     }
-    console.error('Error liking the post:', error);
+    ErrorToast('Error liking the post:', error);
   }
    };
+
 const handlePost=async()=>{
   if(!message){
    ErrorToast("Please write a comment first");
@@ -125,7 +126,7 @@ const res = await axios.post("http://localhost:8000/bloggingApplication/api/v1/b
       
 }
 catch(err){
-  console.error(err);
+  
   ErrorToast(err.response?.data?.message || "Error posting comment");
 }
 finally {
@@ -136,7 +137,7 @@ setLoading(false);
 
 
  
-     console.log(comments,'comments')
+    
   return (
    <div className='tapp-bg tapp-text  w-full h-full'>
      <div className='flex justify-between px-10 py-4 items-center'>

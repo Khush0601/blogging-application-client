@@ -76,9 +76,7 @@ const BlogFetcher = ({category}) => {
     fetchLatestBlogs();
   },[])
 
-  console.log(category,'currentCategory')
-  console.log(allBlogs)
-  console.log(latestBlogs,"latest ")
+  
   return (
     <div className='grid grid-cols-1  sm:grid-cols-5 '>
       

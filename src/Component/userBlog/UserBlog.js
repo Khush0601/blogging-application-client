@@ -21,7 +21,8 @@ const UserBlog = () => {
         );
         setUserBlogs(response?.data?.blogs);
       } catch (error) {
-        console.error('Failed to fetch user blogs:', error);
+        
+        ErrorToast('Failed to fetch user blogs:', error)
       }
        finally {
       setLoading(false);
@@ -56,7 +57,7 @@ const UserBlog = () => {
     }
     catch(err){
     ErrorToast(err?.response?.data?.message)
-    console.log(err?.response?.data?.message)
+ 
     }
    
   };
@@ -95,7 +96,7 @@ const UserBlog = () => {
                     }}
                   />
                   <FaTrash
-                    className="text-red-600 cursor-pointer transition-transform duration-200 hover:scale-125"
+                    className="text-amber-600 cursor-pointer transition-transform duration-200 hover:scale-125"
                     title="Delete Blog"
                     onClick={(e) => {
                       e.stopPropagation();

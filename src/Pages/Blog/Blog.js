@@ -27,7 +27,7 @@ useEffect(()=> {
 
     fetchBlogs();
 },[page])
-console.log(blogs)
+
 
    const handleNext = () => {
     if (blogs.length >= 10) {

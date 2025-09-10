@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 import { UserContext } from '../../App';
 import { ErrorToast, SuccessToast } from '../../utils/toast';
 import BackButton from '../backButton/BackButton';
 
 const CreateBlog = () => {
-    const navigate = useNavigate();
+    
     const {user}=useContext(UserContext)
 
   const [title, setTitle] = useState('');
@@ -34,11 +34,11 @@ const CreateBlog = () => {
     setCategory('AI')
    }
    catch(e){
-    console.log(e?.response?.data?.message)
+    
     ErrorToast(e?.response?.data?.message || 'Failed to post blog');
    }
   }
-  console.log('user',user)
+  
   
   return (
      <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow">

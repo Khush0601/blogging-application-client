@@ -24,7 +24,7 @@ const EditBlog = () => {
         setEditCategory(blog.category);
       } catch (error) {
         ErrorToast('Error fetching blog:', error)
-        console.error('Error fetching blog:', error);
+       
       }
     };
 

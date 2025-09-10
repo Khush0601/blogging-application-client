@@ -54,7 +54,7 @@ useEffect(()=>{
     setTimeout(()=>{
     navigate('/home')
    },2000)
-    // navigate('/home')
+   
    } 
    catch (error) {
     
@@ -73,7 +73,7 @@ useEffect(()=>{
   const onGoogleLogin=async()=>{
     try{
      const googleResponse=await  signInWithPopup(auth,fbProvider)
-    //  console.log(googleResponse)
+    
      let googleToken= await googleResponse.user.getIdToken()
      let data = '';
   
@@ -94,10 +94,10 @@ useEffect(()=>{
     navigate('/home')
    },2000)
 
-    // console.log('userlogin',registeredData)
+    
     }
     catch(e){
-      console.error("Login error:", e);
+     
       ErrorToast(e.message || "Google Login failed");
     }
     }
