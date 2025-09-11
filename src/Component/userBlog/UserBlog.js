@@ -5,6 +5,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import { UserContext } from '../../App'; 
 import { ErrorToast, SuccessToast } from '../../utils/toast';
 import Loading from '../loading/Loading';
+import { API_BASE_URL } from '../../config/server/Server_Config';
 
 const UserBlog = () => {
   const { user } = useContext(UserContext); 
@@ -17,7 +18,7 @@ const UserBlog = () => {
       setLoading(true)
       try {
         const response = await axios.get(
-          `http://localhost:8000/bloggingApplication/api/v1/blog/user/${user._id}`
+          `${API_BASE_URL}/bloggingApplication/api/v1/blog/user/${user._id}`
         );
         setUserBlogs(response?.data?.blogs);
       } catch (error) {
@@ -48,7 +49,7 @@ const UserBlog = () => {
       return
     }
     try{
-     const deleteBlog=await axios.delete("http://localhost:8000/bloggingApplication/api/v1/blog/deleteBlog", {
+     const deleteBlog=await axios.delete(`${API_BASE_URL}/bloggingApplication/api/v1/blog/deleteBlog`, {
       data: { blogId }
     });
    

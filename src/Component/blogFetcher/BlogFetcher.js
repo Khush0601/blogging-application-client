@@ -7,6 +7,7 @@ import Loading from '../loading/Loading'
 import { useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
+import { API_BASE_URL } from '../../config/server/Server_Config'
 // import { useNavigate } from 'react-router'
 
 const BlogFetcher = ({category}) => {
@@ -21,7 +22,7 @@ const BlogFetcher = ({category}) => {
   const getAllBlogs=async()=>{
     setLoading(true)
     try{
-    const allBlogs=await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/getAllBlogs`,
+    const allBlogs=await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/blog/getAllBlogs`,
       {
           params: {
             pageNumber: page,
@@ -63,7 +64,7 @@ const BlogFetcher = ({category}) => {
       setLatestBlogLoading(true)
       try {
         const res = await axios.get(
-          "http://localhost:8000/bloggingApplication/api/v1/blog/latestPost/getLatestPost"
+          `${ API_BASE_URL}/bloggingApplication/api/v1/blog/latestPost/getLatestPost`
         );
         setLatestBlogs(res.data.data);
         setLatestBlogLoading(false);

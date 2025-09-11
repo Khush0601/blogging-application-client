@@ -3,6 +3,7 @@ import { UserContext } from '../../App';
 import axios from 'axios';
 import { ErrorToast } from '../../utils/toast';
 import Loading from '../loading/Loading';
+import { API_BASE_URL } from '../../config/server/Server_Config';
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -16,7 +17,7 @@ useEffect(() => {
     try {
       setLoading(true)
       const res = await axios.get(
-        `http://localhost:8000/bloggingApplication/api/v1/user/${user._id}`
+        `${API_BASE_URL}/bloggingApplication/api/v1/user/${user._id}`
       );
       
       setUserDetails(res.data);

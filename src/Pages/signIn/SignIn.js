@@ -10,7 +10,7 @@ import { useFirebaseContext } from '../../Context/Firebase.Context';
 import { UserContext } from '../../App';
 import BackButton from '../../Component/backButton/BackButton';
 import { useEffect } from 'react';
-
+import { API_BASE_URL } from '../../config/server/Server_Config';
 
 const SignIn = () => {
   const {user,setUser}=useContext(UserContext)
@@ -43,7 +43,7 @@ useEffect(()=>{
     return
   }
   try {
-    const response = await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/signIn', {
+    const response = await axios.post(`${API_BASE_URL}/bloggingApplication/api/v1/user/signIn`, {
       email: signInDetails.email,
       password: signInDetails.password,
     });
@@ -80,7 +80,7 @@ useEffect(()=>{
     let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'http://localhost:8000/bloggingApplication/api/v1/user/googleLogin',
+    url: `${API_BASE_URL}/bloggingApplication/api/v1/user/googleLogin`,
     headers: { 
       'Authorization': `Bearer${googleToken}`
     },

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { UserContext } from '../../App';
 import { ErrorToast, SuccessToast } from '../../utils/toast';
 import BackButton from '../backButton/BackButton';
+import { API_BASE_URL } from '../../config/server/Server_Config';
 
 const CreateBlog = () => {
     
@@ -17,7 +18,7 @@ const CreateBlog = () => {
   const handleSubmitBlog=async(e)=>{
    e.preventDefault()
    try{
-    const response=await axios.post('http://localhost:8000/bloggingApplication/api/v1/blog/createBlog',{
+    const response=await axios.post(`${API_BASE_URL}/bloggingApplication/api/v1/blog/createBlog`,{
       blogBanner:banner,
         title:title,
         content:content,

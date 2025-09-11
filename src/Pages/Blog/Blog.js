@@ -5,7 +5,7 @@ import { ErrorToast } from '../../utils/toast'
 import Loading from '../../Component/loading/Loading'
 import BlogCard from '../../Component/blogCard/BlogCard'
 import Footer from '../../Component/footer/Footer'
-
+import { API_BASE_URL } from '../../config/server/Server_Config'
 const Blog = () => {
   const [blogs,setBlogs]=useState([])
   const [loading,setLoading]=useState(true)
@@ -15,7 +15,7 @@ useEffect(()=> {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/getBlogs?pageNumber=${page}`); 
+        const res = await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/blog/getBlogs?pageNumber=${page}`); 
         setBlogs(res.data);
         setLoading(false);  
       } catch (err) {

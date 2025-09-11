@@ -12,6 +12,7 @@ import logo from "../../Assets/blogging-icon-27.jpg"
 import BackButton from '../../Component/backButton/BackButton';
 import Loading from '../../Component/loading/Loading';
 import { ErrorToast, SuccessToast } from '../../utils/toast';
+import { API_BASE_URL } from '../../config/server/Server_Config';
 
 const BlogDetail = () => {
     const {user}=useContext(UserContext)
@@ -30,7 +31,7 @@ const BlogDetail = () => {
      const fetchBlogDetails=async()=>{
       setLoading(true)
       try{
-      const apiResponse=await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/${params.id}`)
+      const apiResponse=await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/blog/${params.id}`)
       const result=apiResponse?.data;
       setBlogDetails(result)
       }
@@ -48,7 +49,7 @@ const BlogDetail = () => {
    useEffect(() => {
   const fetchComments = async () => {
    try {
-      const response = await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/comment/getComment/${params.id}`);
+      const response = await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/blog/comment/getComment/${params.id}`);
       setComments(response.data);
       
     } catch (error) {
@@ -68,7 +69,7 @@ setCommentShow(!commentshow)
  const handleLike = async () => {
     try {
     const response = await axios.post(
-      `http://localhost:8000/bloggingApplication/api/v1/blog/${blogDetails._id}/like`,
+      `${API_BASE_URL}/bloggingApplication/api/v1/blog/${blogDetails._id}/like`,
       {},
      {
         headers: {
@@ -104,7 +105,7 @@ const handlePost=async()=>{
     return;
   }
 try{
-const res = await axios.post("http://localhost:8000/bloggingApplication/api/v1/blog/comment/postComment", 
+const res = await axios.post(`${API_BASE_URL}/bloggingApplication/api/v1/blog/comment/postComment`, 
         {
           commentMessage: message,
           blogId: params.id,

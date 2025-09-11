@@ -9,6 +9,7 @@ import { ErrorToast } from '../../utils/toast'
 import Loading from '../../Component/loading/Loading'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import { API_BASE_URL } from '../../config/server/Server_Config'
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -19,7 +20,7 @@ const About = () => {
   useEffect(()=>{
    const fetchTestimonialDetails=async()=>{
      try {
-        const res = await axios.get("http://localhost:8000/bloggingApplication/api/v1/blog/testimonial/getTestmonial"); 
+        const res = await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/blog/testimonial/getTestmonial`); 
         setTestimonialData(res.data); 
         setLoading(false);
       } catch (err) {

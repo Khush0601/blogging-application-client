@@ -6,6 +6,7 @@ import FireBaseProvider from './Context/Firebase.Context';
 import axios from 'axios';
 import "./App.css"
 import Chatbot from './Component/chatbot/Chatbot';
+import { API_BASE_URL } from './config/server/Server_Config';
 
 export const UserContext=createContext(null);
 export const ThemeContext = createContext(null);
@@ -38,7 +39,7 @@ const App = () => {
   const autoLogin = async () => {
 
     try {
-      const userDetails = await axios.get("http://localhost:8000/bloggingApplication/api/v1/user/autoLogin", {
+      const userDetails = await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/user/autoLogin`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

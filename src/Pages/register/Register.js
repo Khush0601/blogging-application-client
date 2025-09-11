@@ -12,6 +12,7 @@ import { signInWithPopup } from 'firebase/auth';
 import { useFirebaseContext } from '../../Context/Firebase.Context';
 import { UserContext } from '../../App';
 import BackButton from '../../Component/backButton/BackButton';
+import { API_BASE_URL } from '../../config/server/Server_Config';
 
 const Register = () => {
   const{user,setUser}=useContext(UserContext)
@@ -38,7 +39,7 @@ const Register = () => {
     }
   else{
     try{
-      const createOtp=await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/generateOtp',{
+      const createOtp=await axios.post(`${API_BASE_URL}/bloggingApplication/api/v1/user/generateOtp`,{
         email:signUpForm.email
        })
        setIsOtpGenerated(true)
@@ -60,7 +61,7 @@ const Register = () => {
   }
   const verifyOtp=async()=>{
     try{
-      const verify=await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/verifyOtp',{
+      const verify=await axios.post(`${API_BASE_URL}/bloggingApplication/api/v1/user/verifyOtp`,{
         email:signUpForm.email,
         otp:otp,
        })
@@ -104,7 +105,7 @@ const Register = () => {
    try{
    
     if( validateForm()){
-     const signUpResponse=await axios.post('http://localhost:8000/bloggingApplication/api/v1/user/signUp',{
+     const signUpResponse=await axios.post(`${API_BASE_URL}/bloggingApplication/api/v1/user/signUp`,{
        name:signUpForm?.name,
        email:signUpForm?.email,
        password:signUpForm?.password
@@ -137,7 +138,7 @@ const Register = () => {
   let config = {
   method: 'post',
   maxBodyLength: Infinity,
-  url: 'http://localhost:8000/bloggingApplication/api/v1/user/googleLogin',
+  url: `${API_BASE_URL}/bloggingApplication/api/v1/user/googleLogin`,
   headers: { 
     'Authorization': `Bearer${googleToken}`
   },

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { ErrorToast, SuccessToast } from '../../utils/toast';
 import BackButton from '../backButton/BackButton';
-
+import { API_BASE_URL } from '../../config/server/Server_Config';
 const EditBlog = () => {
     const { blogId } = useParams();
     
@@ -16,7 +16,7 @@ const EditBlog = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const apiResponse = await axios.get(`http://localhost:8000/bloggingApplication/api/v1/blog/${blogId}`);
+        const apiResponse = await axios.get(`${API_BASE_URL}/bloggingApplication/api/v1/blog/${blogId}`);
         const blog=apiResponse?.data
         setEditTitle(blog.title);
         setEditBanner(blog.blogBanner);
@@ -36,7 +36,7 @@ const EditBlog = () => {
   const handleSubmitBlog=async(e)=>{
     e.preventDefault();
     try{
-    const updateBlog=await axios.patch(`http://localhost:8000/bloggingApplication/api/v1/blog/updateBlog`,{
+    const updateBlog=await axios.patch(`${API_BASE_URL}/bloggingApplication/api/v1/blog/updateBlog`,{
       blogId:blogId,
       blogBanner: editBanner,
       title: editTitle,
