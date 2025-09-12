@@ -2,7 +2,8 @@ import React, { lazy, Suspense } from 'react'
 import { Navigate, Route,  Routes } from 'react-router'
 
 import PrivateRoutes from './Component/privateRoute/PrivateRoute'
-import Loading from './Component/loading/Loading';
+
+import LazyLoading from './Component/lazyLoading/LazyLoading';
 
 const Home = lazy(() => import("./Pages/Home/Home"));
 const Register = lazy(() => import("./Pages/register/Register"));
@@ -26,21 +27,21 @@ const AppRoutes = () => {
       <Routes>
          <Route index element={<Navigate to="/home"/>}/>
          <Route path="/home" element={<Home />}/>
-         <Route path="/signUp" element={<Suspense fallback={<Loading />}><Register /></Suspense>} />
-         <Route path="/signIn" element={<Suspense fallback={<Loading />}><SignIn /></Suspense>} />
-         <Route path="/about" element={<Suspense fallback={<Loading />}><About /></Suspense>} />
-         <Route path="/services" element={<Suspense fallback={<Loading />}><Services /></Suspense>} />
-         <Route path="/blog" element={<Suspense fallback={<Loading />}><Blog /></Suspense>} />
-         <Route path="/blogDetail/:id" element={<Suspense fallback={<Loading />}><BlogDetail /></Suspense>} />
-         <Route path="/contact" element={<Suspense fallback={<Loading />}><Contact /></Suspense>} />
-         <Route path="/createBlog" element={<Suspense fallback={<Loading />}><PrivateRoutes><CreateBlog /></PrivateRoutes></Suspense>} />
-         <Route path="/editBlog/:blogId" element={<Suspense fallback={<Loading />}><EditBlog /></Suspense>} />
+         <Route path="/signUp" element={<Suspense fallback={<LazyLoading />}><Register /></Suspense>} />
+         <Route path="/signIn" element={<Suspense fallback={<LazyLoading />}><SignIn /></Suspense>} />
+         <Route path="/about" element={<Suspense fallback={<LazyLoading/>}><About /></Suspense>} />
+         <Route path="/services" element={<Suspense fallback={<LazyLoading />}><Services /></Suspense>} />
+         <Route path="/blog" element={<Suspense fallback={<LazyLoading />}><Blog /></Suspense>} />
+         <Route path="/blogDetail/:id" element={<Suspense fallback={<LazyLoading />}><BlogDetail /></Suspense>} />
+         <Route path="/contact" element={<Suspense fallback={<LazyLoading />}><Contact /></Suspense>} />
+         <Route path="/createBlog" element={<Suspense fallback={<LazyLoading />}><PrivateRoutes><CreateBlog /></PrivateRoutes></Suspense>} />
+         <Route path="/editBlog/:blogId" element={<Suspense fallback={<LazyLoading />}><EditBlog /></Suspense>} />
           
-         <Route path="/dashboard" element={<Suspense fallback={<Loading />}><PrivateRoutes><Dashboard /></PrivateRoutes></Suspense>} >
-          <Route index element={<Suspense fallback={<Loading />}><UserBlog /></Suspense>} />
-          <Route path="userBlog" element={<Suspense fallback={<Loading />}><UserBlog /></Suspense>} />
-          <Route path="write" element={<Suspense fallback={<Loading />}><Write /></Suspense>} />
-          <Route path="profile" element={<Suspense fallback={<Loading />}><Profile /></Suspense>} />
+         <Route path="/dashboard" element={<Suspense fallback={<LazyLoading />}><PrivateRoutes><Dashboard /></PrivateRoutes></Suspense>} >
+          <Route index element={<Suspense fallback={<LazyLoading />}><UserBlog /></Suspense>} />
+          <Route path="userBlog" element={<Suspense fallback={<LazyLoading />}><UserBlog /></Suspense>} />
+          <Route path="write" element={<Suspense fallback={<LazyLoading />}><Write /></Suspense>} />
+          <Route path="profile" element={<Suspense fallback={<LazyLoading />}><Profile /></Suspense>} />
          </Route>
       </Routes>
      
