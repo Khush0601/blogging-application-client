@@ -81,7 +81,10 @@ const BlogFetcher = ({category}) => {
   return (
     <div className='grid grid-cols-1  sm:grid-cols-5 '>
       
-      {loading ? <Loading/> :
+      {loading ?  
+      <div className="col-span-full flex justify-center items-center py-10">
+      <Loading />
+    </div> :
       <div className='col-span-1 sm:col-span-4  flex justify-center flex-wrap '>
       {allBlogs.map((blogs)=>{
         return  <BlogCard key={blogs._id} blogBanner={blogs?.blogBanner} title={blogs?.title}  date={blogs?.updatedAt} blogId={blogs._id} />
@@ -116,7 +119,9 @@ const BlogFetcher = ({category}) => {
   <h2 className="text-lg font-semibold mb-4">Latest Post</h2>
   <div className="space-y-2">
     {latestBlogLoading ? (
+      <div className="col-span-full flex justify-center items-center py-10">
       <Loading />
+    </div>
     ) : (
       latestBlogs.map((data) => (
         <div
